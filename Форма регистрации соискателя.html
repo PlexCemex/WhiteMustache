@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация соискателя</title>
+    <style>
+        :root {
+            --primary-color: #1a3a52;
+            --secondary-color: #2d5a7b;
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --border-color: #ddd;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .main-header {
+            background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%);
+            padding: 30px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 14px;
+        }
+
+        main {
+            padding: 20px 0;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 32px;
+        }
+
+        .form-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-label .required {
+            color: var(--error-color);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 58, 82, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-helper {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .skills-input-wrapper {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .skills-input-wrapper input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .skills-input-wrapper button {
+            padding: 10px 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .skills-input-wrapper button:hover {
+            background: var(--secondary-color);
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .skill-tag {
+            background: #e8f0ff;
+            color: var(--primary-color);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .skill-tag button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-tag button:hover {
+            color: var(--secondary-color);
+        }
+
+        .education-item, .experience-item {
+            background: #f9f9f9;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .item-actions button {
+            padding: 8px 16px;
+            font-size: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-remove {
+            background: #fee;
+            color: var(--error-color);
+        }
+
+        .btn-remove:hover {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .add-more-btn {
+            background: #e8f0ff;
+            color: var(--primary-color);
+            padding: 10px 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .add-more-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background: #e8e8e8;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .message {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.active {
+            display: block;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info-message {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(26, 58, 82, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: white;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 24px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1>📝 Регистрация соискателя</h1>
+            <p class="subtitle">Создай свой профиль и начни поиск работы</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="messageContainer"></div>
+
+            <form id="candidateForm" class="form-container" onsubmit="submitForm(event)">
+
+                <!-- Личная информация -->
+                <div class="form-section">
+                    <h2>👤 Личная информация</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Полное имя <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="fullName" name="name" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email <span class="required">*</span></label>
+                            <input type="email" class="form-input" id="email" name="email" placeholder="ivan@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Телефон <span class="required">*</span></label>
+                            <input type="tel" class="form-input" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Город <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="location" name="location" placeholder="Владивосток" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label class="form-label">Желаемая должность <span class="required">*</span></label>
+                            <input type="text" class="form-input" id="position" name="position" placeholder="Senior Go Developer" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- О себе -->
+                <div class="form-section">
+                    <h2>📝 О себе</h2>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label class="form-label">Расскажи о себе</label>
+                            <textarea class="form-textarea" id="about" name="about" placeholder="Расскажи о своём опыте, интересах и целях..."></textarea>
+                            <div class="input-helper">Это поможет работодателям лучше узнать тебя</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Навыки -->
+                <div class="form-section">
+                    <h2>💡 Основные навыки</h2>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label class="form-label">Добавь свои навыки</label>
+                            <div class="skills-input-wrapper">
+                                <input type="text" id="skillInput" placeholder="Введи навык (Go, Docker, PostgreSQL...)">
+                                <button type="button" onclick="addSkill()">Добавить</button>
+                            </div>
+                            <div class="skills-tags" id="skillsList"></div>
+                            <div class="input-helper">Добавляй навыки по одному за раз</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Опыт работы -->
+                <div class="form-section">
+                    <h2>💼 Опыт работы</h2>
+
+                    <div id="experienceList"></div>
+
+                    <button type="button" class="add-more-btn" onclick="addExperience()">+ Добавить опыт работы</button>
+                </div>
+
+                <!-- Образование -->
+                <div class="form-section">
+                    <h2>🎓 Образование</h2>
+
+                    <div id="educationList"></div>
+
+                    <button type="button" class="add-more-btn" onclick="addEducation()">+ Добавить образование</button>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">✅ Отправить данные на сервер</button>
+                    <button type="reset" class="btn btn-secondary" onclick="resetForm()">🔄 Очистить форму</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">&copy; 2025 Job Portal. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        let skills = [];
+        let experiences = [];
+        let educations = [];
+        let experienceId = 0;
+        let educationId = 0;
+
+        // Добавить навык
+        function addSkill() {
+            const input = document.getElementById('skillInput');
+            const skill = input.value.trim();
+
+            if (!skill) {
+                showMessage('Пожалуйста, введи навык', 'info');
+                return;
+            }
+
+            if (skills.includes(skill)) {
+                showMessage('Этот навык уже добавлен', 'info');
+                return;
+            }
+
+            skills.push(skill);
+            input.value = '';
+            renderSkills();
+        }
+
+        // Удалить навык
+        function removeSkill(skill) {
+            skills = skills.filter(s => s !== skill);
+            renderSkills();
+        }
+
+        // Отобразить навыки
+        function renderSkills() {
+            const container = document.getElementById('skillsList');
+            container.innerHTML = skills.map(skill => `
+                <div class="skill-tag">
+                    ${escapeHtml(skill)}
+                    <button type="button" onclick="removeSkill('${skill.replace(/'/g, "\\'")}')">✕</button>
+                </div>
+            `).join('');
+        }
+
+        // Добавить опыт работы
+        function addExperience() {
+            const id = experienceId++;
+            experiences.push({
+                id,
+                title: '',
+                company: '',
+                period: ''
+            });
+            renderExperiences();
+        }
+
+        // Удалить опыт работы
+        function removeExperience(id) {
+            experiences = experiences.filter(exp => exp.id !== id);
+            renderExperiences();
+        }
+
+        // Обновить опыт работы
+        function updateExperience(id, field, value) {
+            const exp = experiences.find(e => e.id === id);
+            if (exp) exp[field] = value;
+        }
+
+        // Отобразить опыт работы
+        function renderExperiences() {
+            const container = document.getElementById('experienceList');
+            container.innerHTML = experiences.map(exp => `
+                <div class="experience-item">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Должность" value="${escapeHtml(exp.title)}" onchange="updateExperience(${exp.id}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Компания" value="${escapeHtml(exp.company)}" onchange="updateExperience(${exp.id}, 'company', this.value)">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Период (2020 - 2023)" value="${escapeHtml(exp.period)}" onchange="updateExperience(${exp.id}, 'period', this.value)">
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button type="button" class="btn-remove" onclick="removeExperience(${exp.id})">🗑️ Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Добавить образование
+        function addEducation() {
+            const id = educationId++;
+            educations.push({
+                id,
+                degree: '',
+                school: '',
+                year: ''
+            });
+            renderEducations();
+        }
+
+        // Удалить образование
+        function removeEducation(id) {
+            educations = educations.filter(edu => edu.id !== id);
+            renderEducations();
+        }
+
+        // Обновить образование
+        function updateEducation(id, field, value) {
+            const edu = educations.find(e => e.id === id);
+            if (edu) edu[field] = value;
+        }
+
+        // Отобразить образование
+        function renderEducations() {
+            const container = document.getElementById('educationList');
+            container.innerHTML = educations.map(edu => `
+                <div class="education-item">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Степень (Бакалавр, Магистр)" value="${escapeHtml(edu.degree)}" onchange="updateEducation(${edu.id}, 'degree', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Учебное заведение" value="${escapeHtml(edu.school)}" onchange="updateEducation(${edu.id}, 'school', this.value)">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Год (2015 - 2019)" value="${escapeHtml(edu.year)}" onchange="updateEducation(${edu.id}, 'year', this.value)">
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button type="button" class="btn-remove" onclick="removeEducation(${edu.id})">🗑️ Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Отправить форму
+        function submitForm(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                location: document.getElementById('location').value,
+                position: document.getElementById('position').value,
+                about: document.getElementById('about').value,
+                skills: skills,
+                experience: experiences.filter(exp => exp.title || exp.company),
+                education: educations.filter(edu => edu.degree || edu.school),
+                avatar: '👤',
+                rating: 5
+            };
+
+            // Валидация
+            if (!formData.name || !formData.email || !formData.phone || !formData.location || !formData.position) {
+                showMessage('Пожалуйста, заполни все обязательные поля', 'error');
+                return;
+            }
+
+            if (formData.skills.length === 0) {
+                showMessage('Пожалуйста, добавь хотя бы один навык', 'error');
+                return;
+            }
+
+            // Отправка на сервер
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading-spinner"></span>Отправка...';
+
+            const serverUrl = 'http://localhost:8080/api/candidates'; // ← Замени на URL своего сервера
+
+            fetch(serverUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Ошибка сервера');
+                return response.json();
+            })
+            .then(data => {
+                showMessage('✓ Профиль успешно создан! Ожидаем работодателей 😊', 'success');
+                document.getElementById('candidateForm').reset();
+                skills = [];
+                experiences = [];
+                educations = [];
+                renderSkills();
+                renderExperiences();
+                renderEducations();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✅ Отправить данные на сервер';
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                showMessage(`❌ Ошибка при отправке: ${error.message}. Проверь URL сервера: ${serverUrl}`, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✅ Отправить данные на сервер';
+            });
+        }
+
+        // Очистить форму
+        function resetForm() {
+            skills = [];
+            experiences = [];
+            educations = [];
+            experienceId = 0;
+            educationId = 0;
+            renderSkills();
+            renderExperiences();
+            renderEducations();
+        }
+
+        // Показать сообщение
+        function showMessage(text, type) {
+            const container = document.getElementById('messageContainer');
+            container.innerHTML = `<div class="message ${type}-message active">${text}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Защита от XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Добавить навык по Enter
+        document.getElementById('skillInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addSkill();
+            }
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            renderExperiences();
+            renderEducations();
+        });
+    </script>
+</body>
+</html>
