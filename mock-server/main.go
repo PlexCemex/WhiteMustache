@@ -1,71 +1,80 @@
 package main
 
 import (
+	"encoding/xml"
 	"fmt"
+	"io"
 	"net/http"
-	"strings"
 )
 
-const soapResponse = `<?xml version="1.0" encoding="UTF-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:job="https://JobService.org">
-    <soap:Body>
-        <Vacancy>
-            <Organization>ДВФУ</Organization>
-            <Number>Стажер Go-разработчик</Number>
-            <Description>Разработка backend сервисов на Go. Работа с gRPC и microservices. Оклад 25000₽/мес</Description>
-            <DateOfBegin>2025-12-22</DateOfBegin>
-            <DateOfEnd>2026-06-22</DateOfEnd>
-            <TypesOfWork>Стажировка (40 ч/неделю)</TypesOfWork>
-        </Vacancy>
-        <Vacancy>
-            <Organization>ДВФУ IT</Organization>
-            <Number>Junior DevOps Engineer</Number>
-            <Description>Работа с Docker, Kubernetes, CI/CD. Настройка инфраструктуры. Оклад 30000₽/мес</Description>
-            <DateOfBegin>2025-12-22</DateOfBegin>
-            <DateOfEnd>2026-08-22</DateOfEnd>
-            <TypesOfWork>Полная занятость</TypesOfWork>
-        </Vacancy>
-        <Vacancy>
-            <Organization>ДВФУ Lab</Organization>
-            <Number>Backend Developer PostgreSQL</Number>
-            <Description>Оптимизация БД, миграции, API на Go. Работа с Docker. Оклад 28000₽/мес</Description>
-            <DateOfBegin>2025-12-22</DateOfBegin>
-            <DateOfEnd>2026-12-22</DateOfEnd>
-            <TypesOfWork>Подработка (20 ч/неделю)</TypesOfWork>
-        </Vacancy>
-    </soap:Body>
-</soap:Envelope>`
+type PutVacancyRequest struct {
+	XMLName xml.Name `xml:"http://schemas.xmlsoap.org/soap/envelope/ Envelope"`
+	Body    struct {
+		PutVacancy struct {
+			Organization string `xml:"Organization"`
+			Description  string `xml:"Description"`
+			DateOfBegin  string `xml:"DateOfBegin"`
+			DateOfEnd    string `xml:"DateOfEnd"`
+			TypesOfWork  string `xml:"TypesOfWork"`
+		} `xml:"PutVacancy"`
+	} `xml:"http://schemas.xmlsoap.org/soap/envelope/ Body"`
+}
 
-func corsMiddleware(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
+
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, SOAPAction")
+		w.Header().Set("Access-Control-Max-Age", "86400")
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
 		}
 
-		next(w, r)
-	}
+		next.ServeHTTP(w, r)
+	})
 }
 
-func handleJobService(w http.ResponseWriter, r *http.Request) {
-	body := make([]byte, r.ContentLength)
-	r.Body.Read(body)
-	bodyStr := string(body)
-
-	if strings.Contains(bodyStr, "GetVacancy") {
-		w.Header().Set("Content-Type", "text/xml; charset=UTF-8")
-		fmt.Fprint(w, soapResponse)
-	} else {
-		http.Error(w, "Unknown request", http.StatusBadRequest)
+func putVacancyHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
 	}
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Failed to read body", http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	fmt.Println("=== Получен XML запрос ===")
+	fmt.Println(string(body))
+	fmt.Println("===========================")
+
+	var req PutVacancyRequest
+	if err := xml.Unmarshal(body, &req); err != nil {
+		fmt.Printf("Ошибка парсинга: %v\n", err)
+	}
+
+	w.Header().Set("Content-Type", "text/xml; charset=utf-8")
+	response := `<?xml version="1.0" encoding="UTF-8"?><Response><Status>OK</Status></Response>`
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, response)
+
+	fmt.Println("✓ Ответ отправлен")
 }
 
 func main() {
-	http.HandleFunc("/Job/ws/JobService.1cws", corsMiddleware(handleJobService))
-	fmt.Println("SOAP сервер на http://localhost:80/Job/ws/JobService.1cws")
-	http.ListenAndServe(":80", nil)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/Job/ws/JobService.1cws", putVacancyHandler)
+
+	handler := corsMiddleware(mux)
+
+	fmt.Println("🚀 Сервер запущен на http://localhost:8080")
+	if err := http.ListenAndServe(":8080", handler); err != nil {
+		fmt.Println("Ошибка:", err)
+	}
 }
