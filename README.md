@@ -6,7 +6,7 @@ HTML файлы для сайта **Подработок и работ студ�
 
 ## 📡 Общие параметры
 
-**Endpoint:** `localhost:8080/Job/ws/JobService.1cws`  
+**Endpoint:** `localhost:80/Job/ws/JobService.1cws`  
 **Формат:** SOAP XML
 
 ---

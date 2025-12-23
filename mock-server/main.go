@@ -73,8 +73,8 @@ func main() {
 
 	handler := corsMiddleware(mux)
 
-	fmt.Println("🚀 Сервер запущен на http://localhost:8080")
-	if err := http.ListenAndServe(":8080", handler); err != nil {
+	fmt.Println("🚀 Сервер запущен на http://localhost:80")
+	if err := http.ListenAndServe(":80", handler); err != nil {
 		fmt.Println("Ошибка:", err)
 	}
 }

@@ -405,7 +405,7 @@
 </soap:Envelope>`;
 
                 // Send SOAP request
-                const response = await fetch('http://localhost:8080/Job/ws/JobService.1cws', {
+                const response = await fetch('http://localhost:80/Job/ws/JobService.1cws', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/soap+xml; charset=UTF-8',
