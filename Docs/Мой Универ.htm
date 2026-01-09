@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="/favicon/android-app-icon.webp?v=wAXxPe8bK4">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon/favicon.ico?v=wAXxPe8bK4">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png?v=wAXxPe8bK4">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png?v=wAXxPe8bK4">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png?v=wAXxPe8bK4">
+<link rel="manifest" href="/favicon/site.webmanifest?v=wAXxPe8bK4">
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg?v=wAXxPe8bK4" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="Мой Универ">
+<meta name="application-name" content="Мой Универ">
+<meta name="msapplication-TileColor" content="#2b5797">
+<meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png?v=wAXxPe8bK4">
+<meta name="theme-color" content="#ffffff">
+
+<meta name="apple-itunes-app" content="app-id=1508108372">
+<meta name="google-play-app" content="app-id=ru.dvfu.univermobile">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="android-touch-icon" href="/favicon/android-app-icon.webp?v=wAXxPe8bK4"/>
+<title>Мой Универ</title>
+    <meta name="csrf-param" content="_csrf_univer">
+<meta name="csrf-token" content="xvXvEuXCG5fon4MM12WaZiHk2bew0PXCqqrfTNUTg1i_l9t13K9q36H66WWENagzdYiAmsmZoY7v0J077F7oDQ==">
+    <link href="/assets/9bc48f7416b8d39cd1f85fa822cfcabe/app.css?v=1767252294" rel="stylesheet">
+<link href="/assets/96f1f076e5dfcf1f32dd42161591054d/css/bootstrap.css?v=1767252294" rel="stylesheet">
+<link href="/assets/ada748d2b6dff18dc20c070842720f0a/app.css?v=1767252294" rel="stylesheet">
+<link href="/assets/ee1d4d854c3436aeffa59ebd51579afa/notification.css?v=1767252294" rel="stylesheet">
+<script>var appOptions = {"notificationUrl":"https:\/\/notify-univer.dvfu.ru\/api\/v1\/notifications","r":["undergraduate"],"t":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3Njc2ODc2MTkuMjQ3NzMyLCJleHAiOjE3NzAyNzk2MTksInVpZCI6NTEzODcsInVzZXJuYW1lIjoiZmlzdW4uc2EiLCJyb2xlIjoiYWRtaW4ifQ.wrE4_aW5Ob4nzhzngBT0PcSqiXfCywOcXgsX9QGCk7w"};</script></head>
+<body data-scrollprevented="false">
+
+
+
+<div id="notify-buble-layout" class="notify-buble-layout"></div>
+
+<div class="panel" id="main">
+    <div class="blue-top-header top-blue-header bg-blueColour py-2 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col d-none d-md-inline-block">
+                    <div class="">
+                        <div class="float-left">
+                            <a href="https://www.dvfu.ru"
+                               title="ДВФУ"
+                               class="whiteColor text-uppercase font-weight-bold tc-whiteColor mb-0 mr-2 f-XS">www.dvfu.ru</a>
+                        </div>
+                        <div class="float-right">
+                            <a href="/contacts"
+                               title="Единый контактный центр"
+                               class="whiteColor text-uppercase font-weight-bold tc-whiteColor mb-0 mr-2 f-XS">Единый контактный центр</a>
+                            <a href="/mfc/default/enquiry?id=it-support"
+                               title="Техническая поддержка"
+                               class="whiteColor text-uppercase font-weight-bold tc-whiteColor mb-0 mr-2 f-XS">Техническая поддержка</a>
+                            <a href="#"
+                               class="bvi-open whiteColor text-uppercase font-weight-bold tc-whiteColor mb-0 mr-2 f-XS"
+                               title="Версия для слабовидящих"><i
+                                        class="bvi-icon bvi-eye"></i> Версия для слабовидящих</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-blur mobile-menu-blur" id="bg-blur" style="display: none;"></div>
+
+    <header class="main-header ">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="d-lg-none col-4 col-lg-3 align-baseline hamburger-btn">
+                    <button class="hamburger hamburger--spin color-gray" type="button" id="mobileMenuOpen">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                    </button>
+                </div>
+                <div id="menu" class="menu d-lg-none" style="display: none">
+                    <div class="menu-header"></div>
+                    <div class="overflow-y-scroll pt-2 pb-7" id="menu-content">
+                        <nav class="main-nav menu-vertical">
+                            <ul>
+                                <li>
+                                    <a href="https://www.dvfu.ru" target="_blank">
+                                        <img src="/assets/ada748d2b6dff18dc20c070842720f0a/img/icon-sm-dvfu.svg" class="menu-icon mr-1">
+                                        <span>Официальный сайт ДВФУ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="bvi-open">
+                                        <i data-feather="eye" class="menu-icon mr-1"></i>
+                                        <span>Версия для слабовидящих</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <nav class="main-nav menu-vertical">
+                            <ul>
+                                <li>
+                                    <a href="/contacts"
+                                       class="menu-link js-service-link">
+                                        <i data-feather="phone-call" class="menu-icon mr-1"></i>
+                                        <span>Единый контактный центр</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/mfc/default/enquiry?id=it-support"
+                                       class="menu-link js-service-link">
+                                        <i data-feather="headphones" class="menu-icon mr-1"></i>
+                                        <span>Техническая поддержка</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <nav class="main-nav menu-vertical"><ul><li><h3>Обучение</h3><ul><li><a class="menu-link js-service-link" href="https://dpo.dvfu.ru/dd-new" data-service-id="93" data-service-title="Цифровые кафедры" data-service-name="dpo-link"><span class="service-icon menu-icon service-icon__dpo-link"></span> <span>Цифровые кафедры</span></a></li><li><a class="menu-link js-service-link" href="https://dpo.dvfu.ru" data-service-id="90" data-service-title="Дополнительное образование" data-service-name="furtherEducation"><span class="service-icon menu-icon service-icon__furtherEducation"></span> <span>Дополнительное образование</span></a></li><li><a class="menu-link js-service-link" href="/schedule" data-service-id="48" data-service-title="Расписание занятий" data-service-name="class-schedules"><span class="service-icon menu-icon service-icon__class-schedules"></span> <span>Расписание занятий</span></a></li><li><a class="menu-link js-service-link" href="/gradebook" data-service-id="31" data-service-title="Зачётная книжка" data-service-name="new-egradebook"><span class="service-icon menu-icon service-icon__new-egradebook"></span> <span>Зачётная книжка</span></a></li><li><a class="menu-link js-service-link" href="/rau" data-service-id="65" data-service-title="Рейтинг" data-service-name="rau"><span class="service-icon menu-icon service-icon__rau"></span> <span>Рейтинг</span></a></li><li><a class="menu-link js-service-link" href="/profile/portfolio" data-service-id="67" data-service-title="Портфолио студента" data-service-name="portfolio-student"><span class="service-icon menu-icon service-icon__portfolio-student"></span> <span>Портфолио студента</span></a></li><li><a class="menu-link js-service-link" href="/brs/rating-plan/" data-service-id="69" data-service-title="Рейтинг-планы" data-service-name="rating-plans"><span class="service-icon menu-icon service-icon__rating-plans"></span> <span>Рейтинг-планы</span></a></li></ul></li><li><h3>Финансы</h3><ul><li><a class="menu-link js-service-link" href="/payment/grant" data-service-id="36" data-service-title="Стипендия" data-service-name="grant"><span class="service-icon menu-icon service-icon__grant"></span> <span>Стипендия</span></a></li><li><a class="menu-link js-service-link" href="/bank/choose-bank/index" data-service-id="88" data-service-title="Выбор банка" data-service-name="choose-bank"><span class="service-icon menu-icon service-icon__choose-bank"></span> <span>Выбор банка</span></a></li><li><a class="menu-link js-service-link" href="/payment/contract/" data-service-id="85" data-service-title="Оплата договоров" data-service-name="contract-payment"><span class="service-icon menu-icon service-icon__contract-payment"></span> <span>Оплата договоров</span></a></li><li><a class="menu-link js-service-link" href="https://pay.dvfu.ru" data-service-id="86" data-service-title="Сервис онлайн-платежей" data-service-name="pay-dvfu"><span class="service-icon menu-icon service-icon__pay-dvfu"></span> <span>Сервис онлайн-платежей</span></a></li></ul></li><li><h3>Проживание</h3><ul><li><a class="menu-link js-service-link" href="/settle" data-service-id="63" data-service-title="Заселение 25-26" data-service-name="settle"><span class="service-icon menu-icon service-icon__settle"></span> <span>Заселение 25-26</span></a></li><li><a class="menu-link js-service-link" href="/resettle" data-service-id="70" data-service-title="Переселение" data-service-name="resettle"><span class="service-icon menu-icon service-icon__resettle"></span> <span>Переселение</span></a></li><li><a class="menu-link js-service-link" href="/accommodation" data-service-id="71" data-service-title="Проживание" data-service-name="accommodation"><span class="service-icon menu-icon service-icon__accommodation"></span> <span>Проживание</span></a></li></ul></li><li><h3>Заявки</h3><ul><li><a class="menu-link js-service-link" href="/mfc/default/enquiry?id=car-pass" data-service-id="1" data-service-title="Пропуск на автомобиль" data-service-name="car-pass"><span class="service-icon menu-icon service-icon__car-pass"></span> <span>Пропуск на автомобиль</span></a></li><li><a class="menu-link js-service-link" href="/page/service/vpn-access" data-service-id="15" data-service-title="VPN" data-service-name="vpn-access"><span class="service-icon menu-icon service-icon__vpn-access"></span> <span>VPN</span></a></li><li><a class="menu-link js-service-link" href="/mfc/default/enquiry?id=facility-maintenance-request" data-service-id="42" data-service-title="Кампусное обслуживание" data-service-name="room-workplace-service"><span class="service-icon menu-icon service-icon__room-workplace-service"></span> <span>Кампусное обслуживание</span></a></li><li><a class="menu-link js-service-link" href="/mfc" data-service-id="80" data-service-title="Единое окно" data-service-name="mfc"><span class="service-icon menu-icon service-icon__mfc"></span> <span>Единое окно</span></a></li><li><a class="menu-link js-service-link" href="https://www.dvfu.ru/about/rectorate/32416/the-department-of-personnel-management/the-committee-on-ethics-and-official-conduct-of-employees-of-the-university/" data-service-id="92" data-service-title="Обращение в комиссию по этике" data-service-name="ethics-violation-complaint"><span class="service-icon menu-icon service-icon__ethics-violation-complaint"></span> <span>Обращение в комиссию по этике</span></a></li></ul></li><li><h3>Сервисы</h3><ul><li><a class="menu-link js-service-link" href="/page/service/email" data-service-id="16" data-service-title="Почта" data-service-name="email"><span class="service-icon menu-icon service-icon__email"></span> <span>Почта</span></a></li><li><a class="menu-link js-service-link" href="/phonebook" data-service-id="33" data-service-title="Телефонный справочник" data-service-name="phonebook"><span class="service-icon menu-icon service-icon__phonebook"></span> <span>Телефонный справочник</span></a></li><li><a class="menu-link js-service-link" href="https://map.dvfu.ru/" data-service-id="101" data-service-title="Карта ДВФУ" data-service-name="fefu-map"><span class="service-icon menu-icon service-icon__fefu-map"></span> <span>Карта ДВФУ</span></a></li><li><a class="menu-link js-service-link" href="/page/service/library" data-service-id="21" data-service-title="Библиотека" data-service-name="library"><span class="service-icon menu-icon service-icon__library"></span> <span>Библиотека</span></a></li><li><a class="menu-link js-service-link" href="/page/service/wi-fi-access" data-service-id="47" data-service-title="Wi-Fi" data-service-name="wi-fi-access"><span class="service-icon menu-icon service-icon__wi-fi-access"></span> <span>Wi-Fi</span></a></li><li><a class="menu-link js-service-link" href="/pass" data-service-id="68" data-service-title="Заказ пропуска" data-service-name="pass"><span class="service-icon menu-icon service-icon__pass"></span> <span>Заказ пропуска</span></a></li><li><a class="menu-link js-service-link" href="/page/service/bus_schedule" data-service-id="75" data-service-title="Расписание автобусов" data-service-name="bus_schedule"><span class="service-icon menu-icon service-icon__bus_schedule"></span> <span>Расписание автобусов</span></a></li><li><a class="menu-link js-service-link" href="/page/service/mobile-app" data-service-id="83" data-service-title="Мобильное приложение «Мой Универ»" data-service-name="mobile-app"><span class="service-icon menu-icon service-icon__mobile-app"></span> <span>Мобильное приложение «Мой Универ»</span></a></li><li><a class="menu-link js-service-link" href="/document" data-service-id="84" data-service-title="Документы" data-service-name="document"><span class="service-icon menu-icon service-icon__document"></span> <span>Документы</span></a></li><li><a class="menu-link js-service-link" href="/studentProject" data-service-id="87" data-service-title="Твоя инициатива" data-service-name="student-project"><span class="service-icon menu-icon service-icon__student-project"></span> <span>Твоя инициатива</span></a></li><li><a class="menu-link js-service-link" href="/page/service/career" data-service-id="103" data-service-title="Карьера/стажировки" data-service-name="career"><span class="service-icon menu-icon service-icon__career"></span> <span>Карьера/стажировки</span></a></li><li><a class="menu-link js-service-link" href="/page/service/sponsored-education" data-service-id="104" data-service-title="Целевое обучение" data-service-name="sponsored-education"><span class="service-icon menu-icon service-icon__sponsored-education"></span> <span>Целевое обучение</span></a></li></ul></li></ul></nav>                    </div>
+                </div>
+                <div class="col-4 col-lg-2 col-xl-2 px-1 logo-div">
+                                            <div id="desktopLogoDiv" class="d-none d-lg-block position-relative">
+                            <img id="desktopLogo" class="img-fluid position-relative main-logo"
+                                 alt="Мой Универ" title="Мой Универ"
+                                 src="/assets/ada748d2b6dff18dc20c070842720f0a/img/img-myuniver-logo.svg">
+                            <img id="desktopLogoMin" class="img-fluid position-absolute main-logo my-auto"
+                                 style="display: none; height: 40px; top: 0; bottom: 0;"
+                                 alt="Мой Универ" title="Мой Универ"
+                                 src="/assets/ada748d2b6dff18dc20c070842720f0a/img/img-logo-symbol.svg">
+                        </div>
+                        <img id="mobileLogo" class="img-fluid d-lg-none position-relative main-logo"
+                             alt="Мой Универ" title="Мой Универ"
+                             src="/assets/ada748d2b6dff18dc20c070842720f0a/img/img-logo-symbol.svg">
+                                        </div>
+                <div class="d-none d-lg-block col-lg-8 col-xl-7 position-static">
+                    <nav class="main-nav menu-horizontal"><ul class="nav"><li><a id="dropdown-study" class="btn btn-link dropdown-toggle f-M" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Обучение</a><ul class="dropdown-menu shadow-dropdown" aria-labelledby="dropdown-study"><li><a class="menu-link js-service-link" href="https://dpo.dvfu.ru/dd-new" data-service-id="93" data-service-title="Цифровые кафедры" data-service-name="dpo-link"><span class="service-icon menu-icon service-icon__dpo-link"></span> <span>Цифровые кафедры</span></a></li><li><a class="menu-link js-service-link" href="https://dpo.dvfu.ru" data-service-id="90" data-service-title="Дополнительное образование" data-service-name="furtherEducation"><span class="service-icon menu-icon service-icon__furtherEducation"></span> <span>Дополнительное образование</span></a></li><li><a class="menu-link js-service-link" href="/schedule" data-service-id="48" data-service-title="Расписание занятий" data-service-name="class-schedules"><span class="service-icon menu-icon service-icon__class-schedules"></span> <span>Расписание занятий</span></a></li><li><a class="menu-link js-service-link" href="/gradebook" data-service-id="31" data-service-title="Зачётная книжка" data-service-name="new-egradebook"><span class="service-icon menu-icon service-icon__new-egradebook"></span> <span>Зачётная книжка</span></a></li><li><a class="menu-link js-service-link" href="/rau" data-service-id="65" data-service-title="Рейтинг" data-service-name="rau"><span class="service-icon menu-icon service-icon__rau"></span> <span>Рейтинг</span></a></li><li><a class="menu-link js-service-link" href="/profile/portfolio" data-service-id="67" data-service-title="Портфолио студента" data-service-name="portfolio-student"><span class="service-icon menu-icon service-icon__portfolio-student"></span> <span>Портфолио студента</span></a></li><li><a class="menu-link js-service-link" href="/brs/rating-plan/" data-service-id="69" data-service-title="Рейтинг-планы" data-service-name="rating-plans"><span class="service-icon menu-icon service-icon__rating-plans"></span> <span>Рейтинг-планы</span></a></li></ul></li><li><a id="dropdown-finance" class="btn btn-link dropdown-toggle f-M" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Финансы</a><ul class="dropdown-menu shadow-dropdown" aria-labelledby="dropdown-finance"><li><a class="menu-link js-service-link" href="/payment/grant" data-service-id="36" data-service-title="Стипендия" data-service-name="grant"><span class="service-icon menu-icon service-icon__grant"></span> <span>Стипендия</span></a></li><li><a class="menu-link js-service-link" href="/bank/choose-bank/index" data-service-id="88" data-service-title="Выбор банка" data-service-name="choose-bank"><span class="service-icon menu-icon service-icon__choose-bank"></span> <span>Выбор банка</span></a></li><li><a class="menu-link js-service-link" href="/payment/contract/" data-service-id="85" data-service-title="Оплата договоров" data-service-name="contract-payment"><span class="service-icon menu-icon service-icon__contract-payment"></span> <span>Оплата договоров</span></a></li><li><a class="menu-link js-service-link" href="https://pay.dvfu.ru" data-service-id="86" data-service-title="Сервис онлайн-платежей" data-service-name="pay-dvfu"><span class="service-icon menu-icon service-icon__pay-dvfu"></span> <span>Сервис онлайн-платежей</span></a></li></ul></li><li><a id="dropdown-accommodation" class="btn btn-link dropdown-toggle f-M" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Проживание</a><ul class="dropdown-menu shadow-dropdown" aria-labelledby="dropdown-accommodation"><li><a class="menu-link js-service-link" href="/settle" data-service-id="63" data-service-title="Заселение 25-26" data-service-name="settle"><span class="service-icon menu-icon service-icon__settle"></span> <span>Заселение 25-26</span></a></li><li><a class="menu-link js-service-link" href="/resettle" data-service-id="70" data-service-title="Переселение" data-service-name="resettle"><span class="service-icon menu-icon service-icon__resettle"></span> <span>Переселение</span></a></li><li><a class="menu-link js-service-link" href="/accommodation" data-service-id="71" data-service-title="Проживание" data-service-name="accommodation"><span class="service-icon menu-icon service-icon__accommodation"></span> <span>Проживание</span></a></li></ul></li><li><a id="dropdown-applications" class="btn btn-link dropdown-toggle f-M" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Заявки</a><ul class="dropdown-menu shadow-dropdown" aria-labelledby="dropdown-applications"><li><a class="menu-link js-service-link" href="/mfc/default/enquiry?id=car-pass" data-service-id="1" data-service-title="Пропуск на автомобиль" data-service-name="car-pass"><span class="service-icon menu-icon service-icon__car-pass"></span> <span>Пропуск на автомобиль</span></a></li><li><a class="menu-link js-service-link" href="/page/service/vpn-access" data-service-id="15" data-service-title="VPN" data-service-name="vpn-access"><span class="service-icon menu-icon service-icon__vpn-access"></span> <span>VPN</span></a></li><li><a class="menu-link js-service-link" href="/mfc/default/enquiry?id=facility-maintenance-request" data-service-id="42" data-service-title="Кампусное обслуживание" data-service-name="room-workplace-service"><span class="service-icon menu-icon service-icon__room-workplace-service"></span> <span>Кампусное обслуживание</span></a></li><li><a class="menu-link js-service-link" href="/mfc" data-service-id="80" data-service-title="Единое окно" data-service-name="mfc"><span class="service-icon menu-icon service-icon__mfc"></span> <span>Единое окно</span></a></li><li><a class="menu-link js-service-link" href="https://www.dvfu.ru/about/rectorate/32416/the-department-of-personnel-management/the-committee-on-ethics-and-official-conduct-of-employees-of-the-university/" data-service-id="92" data-service-title="Обращение в комиссию по этике" data-service-name="ethics-violation-complaint"><span class="service-icon menu-icon service-icon__ethics-violation-complaint"></span> <span>Обращение в комиссию по этике</span></a></li></ul></li><li><a id="dropdown-services" class="btn btn-link dropdown-toggle f-M" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сервисы</a><ul class="dropdown-menu shadow-dropdown" aria-labelledby="dropdown-services"><li><a class="menu-link js-service-link" href="/page/service/email" data-service-id="16" data-service-title="Почта" data-service-name="email"><span class="service-icon menu-icon service-icon__email"></span> <span>Почта</span></a></li><li><a class="menu-link js-service-link" href="/phonebook" data-service-id="33" data-service-title="Телефонный справочник" data-service-name="phonebook"><span class="service-icon menu-icon service-icon__phonebook"></span> <span>Телефонный справочник</span></a></li><li><a class="menu-link js-service-link" href="https://map.dvfu.ru/" data-service-id="101" data-service-title="Карта ДВФУ" data-service-name="fefu-map"><span class="service-icon menu-icon service-icon__fefu-map"></span> <span>Карта ДВФУ</span></a></li><li><a class="menu-link js-service-link" href="/page/service/library" data-service-id="21" data-service-title="Библиотека" data-service-name="library"><span class="service-icon menu-icon service-icon__library"></span> <span>Библиотека</span></a></li><li><a class="menu-link js-service-link" href="/page/service/wi-fi-access" data-service-id="47" data-service-title="Wi-Fi" data-service-name="wi-fi-access"><span class="service-icon menu-icon service-icon__wi-fi-access"></span> <span>Wi-Fi</span></a></li><li><a class="menu-link js-service-link" href="/pass" data-service-id="68" data-service-title="Заказ пропуска" data-service-name="pass"><span class="service-icon menu-icon service-icon__pass"></span> <span>Заказ пропуска</span></a></li><li><a class="menu-link js-service-link" href="/page/service/bus_schedule" data-service-id="75" data-service-title="Расписание автобусов" data-service-name="bus_schedule"><span class="service-icon menu-icon service-icon__bus_schedule"></span> <span>Расписание автобусов</span></a></li><li><a class="menu-link js-service-link" href="/page/service/mobile-app" data-service-id="83" data-service-title="Мобильное приложение «Мой Универ»" data-service-name="mobile-app"><span class="service-icon menu-icon service-icon__mobile-app"></span> <span>Мобильное приложение «Мой Универ»</span></a></li><li><a class="menu-link js-service-link" href="/document" data-service-id="84" data-service-title="Документы" data-service-name="document"><span class="service-icon menu-icon service-icon__document"></span> <span>Документы</span></a></li><li><a class="menu-link js-service-link" href="/studentProject" data-service-id="87" data-service-title="Твоя инициатива" data-service-name="student-project"><span class="service-icon menu-icon service-icon__student-project"></span> <span>Твоя инициатива</span></a></li><li><a class="menu-link js-service-link" href="/page/service/career" data-service-id="103" data-service-title="Карьера/стажировки" data-service-name="career"><span class="service-icon menu-icon service-icon__career"></span> <span>Карьера/стажировки</span></a></li><li><a class="menu-link js-service-link" href="/page/service/sponsored-education" data-service-id="104" data-service-title="Целевое обучение" data-service-name="sponsored-education"><span class="service-icon menu-icon service-icon__sponsored-education"></span> <span>Целевое обучение</span></a></li></ul></li></ul></nav>                </div>
+                <div class="col-4 col-lg-2 col-xl-3 pl-0 align-baseline">
+                    <nav class="actions-nav">
+                        <ul class="nav f-M justify-content-end">
+                            <li class="nav-item">
+                                <div id="notify-widget"></div>
+                            </li>
+                            <li class="nav-item pl-sm-0">
+                                <a href="#" class="nav-link" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <div class="d-inline">
+                                        <i data-feather="user" class="icon-user-profile"></i>
+                                        <span class="d-none d-xl-inline-block user-profile-name" title="Фисун С. А.">
+                                            Фисун С. А.                                        </span>
+                                        <span class="d-none d-md-inline dropdown-toggle"></span>
+                                        <div class="dropdown-menu shadow-dropdown">
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item d-none d-md-block d-lg-none"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="Уведомления"><i
+                                                        class="icon-N mr-1" data-feather="bell"></i> Уведомления</a>
+                                            <a class="dropdown-item" href="/profile"><i
+                                                        data-feather="user" class="icon-N mr-1"></i> Профиль</a>
+                                            <a class="dropdown-item" href="/userRequest"><i
+                                                        data-feather="list" class="icon-N mr-1"></i> Мои заявки</a>
+                                            <div class="dropdown-divider"></div>
+                                                                                        <a class="dropdown-item" href="https://esa.dvfu.ru/logout"><i
+                                                        data-feather="log-out" class="icon-N"></i> Выход</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content my-3 mb-6">
+<!--Уведомление об опросе-->
+<div id="pollPopup"></div>
+
+
+<div class="container">
+    <div class="card-body search-global-card mb-2">
+        <form class="form-global-search" action="/search/default/search" method="POST">
+<input type="hidden" name="_csrf_univer" value="xvXvEuXCG5fon4MM12WaZiHk2bew0PXCqqrfTNUTg1i_l9t13K9q36H66WWENagzdYiAmsmZoY7v0J077F7oDQ=="><div class="input-group"><input type="hidden" name="config" value=""><input type="search" id="input_query" class="form-control" name="search_query" value="" placeholder="Поиск .." aria-label="Найти" required="true" minlength="3" autocomplete="off"></div><div class="result-global-search"></div></form>    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 pr-2">
+            <div class="alert alert-warning warning-list">
+                <ul>
+                    <li>
+                        <a target="_blank"
+                           href="/files/algoritm-okazaniya-ekstrennoy-i-neotlozhnoy-medicinskoy-pomoschi.pdf">
+                            Алгоритм оказания экстренной и неотложной медицинской помощи
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank"
+                           href="/files/pamyatka-po-okazaniyu-ekstrennoy-medicinskoy-pomoschi-dlya-studentov-i-sotrudnikov.pdf">
+                            Памятка по организации оказания неотложной и экстренной медицинской помощи студентам и
+                            сотрудникам
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="/files/pamyatka-o-mediko-psihologicheskoy-pomoschi.pdf">
+                            Памятка о медико-психологической помощи
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Временный пропуск первокурсника -->
+
+<!-- Выбор образовательного профиля -->
+
+<section class="favorite-services">
+    <div class="container">
+        <div class="row">
+                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://www.dvfu.ru/svo/"
+                                   title="Поддержка семей СВО"
+                                   data-service-id="95"
+                                   data-service-name="svo-family-support"
+                                   data-service-title="Поддержка семей СВО"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__svo-family-support"></div>
+                                        <h3>Поддержка семей СВО</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://dpo.dvfu.ru/dd-new"
+                                   title="Цифровые кафедры"
+                                   data-service-id="93"
+                                   data-service-name="dpo-link"
+                                   data-service-title="Цифровые кафедры"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__dpo-link"></div>
+                                        <h3>Цифровые кафедры</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://dpo.dvfu.ru"
+                                   title="Дополнительное образование"
+                                   data-service-id="90"
+                                   data-service-name="furtherEducation"
+                                   data-service-title="Дополнительное образование"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__furtherEducation"></div>
+                                        <h3>Дополнительное образование</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/phonebook"
+                                   title="Телефонный справочник"
+                                   data-service-id="33"
+                                   data-service-name="phonebook"
+                                   data-service-title="Телефонный справочник"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__phonebook"></div>
+                                        <h3>Телефонный справочник</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                                                                        <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/schedule"
+                                   title="Расписание занятий"
+                                   data-service-id="48"
+                                   data-service-name="class-schedules"
+                                   data-service-title="Расписание занятий"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__class-schedules"></div>
+                                        <h3>Расписание занятий</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://map.dvfu.ru/"
+                                   title="Карта ДВФУ"
+                                   data-service-id="101"
+                                   data-service-name="fefu-map"
+                                   data-service-title="Карта ДВФУ"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__fefu-map"></div>
+                                        <h3>Карта ДВФУ</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/gradebook"
+                                   title="Зачётная книжка"
+                                   data-service-id="31"
+                                   data-service-name="new-egradebook"
+                                   data-service-title="Зачётная книжка"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__new-egradebook"></div>
+                                        <h3>Зачётная книжка</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                                                                                                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/settle"
+                                   title="Заселение 25-26"
+                                   data-service-id="63"
+                                   data-service-name="settle"
+                                   data-service-title="Заселение 25-26"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__settle"></div>
+                                        <h3>Заселение 25-26</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/rau"
+                                   title="Рейтинг"
+                                   data-service-id="65"
+                                   data-service-name="rau"
+                                   data-service-title="Рейтинг"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__rau"></div>
+                                        <h3>Рейтинг</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/profile/portfolio"
+                                   title="Портфолио студента"
+                                   data-service-id="67"
+                                   data-service-name="portfolio-student"
+                                   data-service-title="Портфолио студента"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__portfolio-student"></div>
+                                        <h3>Портфолио студента</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/pass"
+                                   title="Заказ пропуска"
+                                   data-service-id="68"
+                                   data-service-name="pass"
+                                   data-service-title="Заказ пропуска"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__pass"></div>
+                                        <h3>Заказ пропуска</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/brs/rating-plan/"
+                                   title="Рейтинг-планы"
+                                   data-service-id="69"
+                                   data-service-name="rating-plans"
+                                   data-service-title="Рейтинг-планы"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__rating-plans"></div>
+                                        <h3>Рейтинг-планы</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/page/service/bus_schedule"
+                                   title="Расписание автобусов"
+                                   data-service-id="75"
+                                   data-service-name="bus_schedule"
+                                   data-service-title="Расписание автобусов"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__bus_schedule"></div>
+                                        <h3>Расписание автобусов</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                                            <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/mfc"
+                                   title="Единое окно"
+                                   data-service-id="80"
+                                   data-service-name="mfc"
+                                   data-service-title="Единое окно"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__mfc"></div>
+                                        <h3>Единое окно</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/document"
+                                   title="Документы"
+                                   data-service-id="84"
+                                   data-service-name="document"
+                                   data-service-title="Документы"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__document"></div>
+                                        <h3>Документы</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/payment/contract/"
+                                   title="Оплата договоров"
+                                   data-service-id="85"
+                                   data-service-name="contract-payment"
+                                   data-service-title="Оплата договоров"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__contract-payment"></div>
+                                        <h3>Оплата договоров</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://pay.dvfu.ru"
+                                   title="Сервис онлайн-платежей"
+                                   data-service-id="86"
+                                   data-service-name="pay-dvfu"
+                                   data-service-title="Сервис онлайн-платежей"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__pay-dvfu"></div>
+                                        <h3>Сервис онлайн-платежей</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/studentProject"
+                                   title="Твоя инициатива"
+                                   data-service-id="87"
+                                   data-service-name="student-project"
+                                   data-service-title="Твоя инициатива"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__student-project"></div>
+                                        <h3>Твоя инициатива</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://www.dvfu.ru/about/rectorate/32416/the-department-of-personnel-management/the-committee-on-ethics-and-official-conduct-of-employees-of-the-university/"
+                                   title="Обращение в комиссию по этике"
+                                   data-service-id="92"
+                                   data-service-name="ethics-violation-complaint"
+                                   data-service-title="Обращение в комиссию по этике"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__ethics-violation-complaint"></div>
+                                        <h3>Обращение в комиссию по этике</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="https://lms.dvfu.ru/"
+                                   title="LMS ДВФУ"
+                                   data-service-id="99"
+                                   data-service-name="lms"
+                                   data-service-title="LMS ДВФУ"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__lms"></div>
+                                        <h3>LMS ДВФУ</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/page/service/career"
+                                   title="Карьера/стажировки"
+                                   data-service-id="103"
+                                   data-service-name="career"
+                                   data-service-title="Карьера/стажировки"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__career"></div>
+                                        <h3>Карьера/стажировки</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-2 mb-4 ">
+                        <div class="card shadow-sm text-center ar-equal card-round">
+                            <div class="promoted-service content d-block d-flex justify-content-center">
+                                <a class="promoted-service__link service-link js-service-link"
+                                   href="/page/service/sponsored-education"
+                                   title="Целевое обучение"
+                                   data-service-id="104"
+                                   data-service-name="sponsored-education"
+                                   data-service-title="Целевое обучение"
+                                                                    >
+                                    <div class="promoted-service__title text-center">
+                                        <div class="service-icon service-icon__sponsored-education"></div>
+                                        <h3>Целевое обучение</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                    </div>
+    </div>
+</section>
+<section class="index-dashboard pb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="justify-content-center" id="widgetsSpinner" style="display: flex">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Загрузка...</span>
+                    </div>
+                </div>
+                <div class="card-columns widget-list row invisible" id="mainWidgetContaiener">
+                                            <!-- Заселение -->
+                        <div id="widgetId-4" class="card widget shadow-sm" data-widget-id="4"><div class="card-header d-flex justify-content-between"><h2 class="f-M mb-0">Заселение 25-26</h2><span class="d-block d-lg-none font-weight-bold"><span class="widgetUp mx-1"><i data-feather="arrow-up" width="13" height="13"></i></span><span class="widgetDown ml-2"><i data-feather="arrow-down" width="13" height="13"></i></span></span><span class="d-none move-icon"><i data-feather="move" width="13" height="13"></i></span></div><div class="card-body"></div></div>
+                        <!-- Переселение -->
+                                                                <!-- Виджет новостей-->
+
+                    <div id="widgetId-10" class="card widget shadow-sm" data-widget-id="10"><div class="card-header d-flex justify-content-between"><h2 class="f-M mb-0"><a href="/news" title="Новости" target="">Новости</a></h2><span class="d-block d-lg-none font-weight-bold"><span class="widgetUp mx-1"><i data-feather="arrow-up" width="13" height="13"></i></span><span class="widgetDown ml-2"><i data-feather="arrow-down" width="13" height="13"></i></span></span><span class="d-none move-icon"><i data-feather="move" width="13" height="13"></i></span></div><div class="card-body">
+            <div>
+            <p>
+                <a class="profile-link" href="/news/153">Защити «Стартап как диплом»</a>            </p>
+
+            <span class="f-S text-muted">
+                10.11.2025, 12:05            </span>
+        </div>
+        <hr>
+            <div>
+            <p>
+                <a class="profile-link" href="/news/150">Осталось 2 дня до конца приёма заявок в студенческий отряд «Приёмная комиссия» ! </a>            </p>
+
+            <span class="f-S text-muted">
+                15.04.2025, 11:53            </span>
+        </div>
+        <hr>
+            <div>
+            <p>
+                <a class="profile-link" href="/news/148">Узнай про магистратуру на Дне открытых дверей в ДВФУ!</a>            </p>
+
+            <span class="f-S text-muted">
+                26.03.2025, 17:34            </span>
+        </div>
+        <hr>
+    </div></div>
+                    
+                                            <div class="card widget shadow-sm"
+                             data-collapsed="#scheduleWidget"
+                             data-widget-id="12"
+                             id="widgetId-12"
+                        >
+                            <div class="card-header d-flex justify-content-between">
+                                <h2 class="f-M mb-0">
+                                    <a href="/schedule"
+                                       title="Расписание"
+                                       target="_blank">Расписание
+                                    </a>
+                                </h2>
+                                <span class="d-block d-lg-none font-weight-bold">
+                                    <span class="widgetUp mx-1">
+                                        <i data-feather="arrow-up" width="13" height="13"></i>
+                                    </span>
+                                    <span class="widgetDown mx-1">
+                                        <i data-feather="arrow-down" width="13" height="13"></i>
+                                    </span>
+                                </span>
+                                <span class="d-none move-icon">
+                                    <i data-feather="move" width="13" height="13"></i>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <div id="widgetSchedule"
+                                     data-last-update="1767860789000"
+                                     data-hash="b934945e428a468e720599b1c0a8888d"
+                                     data-groups="[5556]"
+                                     data-groups-name="[&quot;Б9122-09.03.02прс&quot;]"
+                                     data-pps=""
+                                ></div>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                        <!-- Зачетная книжка -->
+                        <!-- old -->                        <div class="card widget shadow-sm"
+                             data-widget-id="5"
+                             id="widgetId-5">
+                            <div class="card-header d-flex justify-content-between">
+                                <h2 class="f-M">Зачётная книжка</h2>
+                                <span class="d-block d-lg-none font-weight-bold">
+                                    <span class="widgetUp mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-arrow-up"><line x1="12" y1="19" x2="12"
+                                                                                    y2="5"></line><polyline
+                                                    points="5 12 12 5 19 12"></polyline></svg>
+                                    </span>
+                                    <span class="widgetDown mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-arrow-down"><line x1="12" y1="5" x2="12"
+                                                                                      y2="19"></line><polyline
+                                                    points="19 12 12 19 5 12"></polyline></svg>
+                                    </span>
+                                </span>
+                                <span class="d-none move-icon"><svg xmlns="http://www.w3.org/2000/svg" width="13"
+                                                                    height="13" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-move"><polyline
+                                                points="5 9 2 12 5 15"></polyline><polyline
+                                                points="9 5 12 2 15 5"></polyline><polyline
+                                                points="15 19 12 22 9 19"></polyline><polyline
+                                                points="19 9 22 12 19 15"></polyline><line x1="2" y1="12" x2="22"
+                                                                                           y2="12"></line><line
+                                                x1="12"
+                                                y1="2"
+                                                x2="12"
+                                                y2="22"></line></svg></span>
+                            </div>
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    
+                    <!-- Проживание -->
+                    
+                    <!-- Проекты -->
+                                            <div id="widgetId-3" class="card widget shadow-sm" data-widget-id="3"><div class="card-header d-flex justify-content-between"><h2 class="f-M mb-0"><a href="https://projects.dvfu.ru" title="Проекты" target="">Проекты</a></h2><span class="d-block d-lg-none font-weight-bold"><span class="widgetUp mx-1"><i data-feather="arrow-up" width="13" height="13"></i></span><span class="widgetDown ml-2"><i data-feather="arrow-down" width="13" height="13"></i></span></span><span class="d-none move-icon"><i data-feather="move" width="13" height="13"></i></span></div><div class="card-body">
+<ul class="nav nav-pills mb-3 row" id="jsProjectTabs" role="tablist">
+
+              <li class="nav-item col-6 text-center">
+            <a class="nav-link active" id="pills-projects-recommended-tab" data-toggle="pill" href="#pills-projects-recommended" role="tab" aria-controls="pills-projects-recommended" aria-selected="true">Рекомендовано</a>
+          </li>
+    
+    <li class="nav-item col-6 text-center">
+        <a class="nav-link" id="pills-projects-my-tab" data-toggle="pill" href="#pills-projects-my" role="tab" aria-controls="pills-projects-my" aria-selected="false">Мои</a>
+  </li>
+</ul>
+<div class="tab-content">
+    
+      <div class="tab-pane fade show active" id="pills-projects-recommended" role="tabpanel" aria-labelledby="pills-projects-recommended-tab">
+        
+
+                    
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        20.04.2023 ⟶ 10.06.2023                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Восточный институт - Школа региональных и международных исследований">
+                            Восточный институт - Школа региональных и международных исследований                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/1065"
+                   class="project-link">
+                    Scientific Language Discussion Group                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Лазарева Ирина Николаевна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Доцент            </div>
+            </div>
+</div>
+
+                    
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        28.09.2021 ⟶ 02.07.2022                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Школа экономики и менеджмента">
+                            Школа экономики и менеджмента                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/781"
+                   class="project-link">
+                    Информационная площадка (платформа) потенциальной занятости и социализации лиц с ограниченными возможностями здоровья "Мой мир - мои возможности"                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Присяжная Мария Владимировна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Старший преподаватель            </div>
+            </div>
+</div>
+
+                    
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        29.11.2021 ⟶ 02.07.2022                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Школа экономики и менеджмента">
+                            Школа экономики и менеджмента                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/777"
+                   class="project-link">
+                    Разработка информационной системы электронного портфолио учителя                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Присяжная Мария Владимировна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Старший преподаватель            </div>
+            </div>
+</div>
+
+                                <div id="jsAllProjects" style="display: none; w-100">
+        
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        28.09.2021 ⟶ 02.07.2022                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Школа экономики и менеджмента">
+                            Школа экономики и менеджмента                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/778"
+                   class="project-link">
+                    Разработка IT-сервиса для создания туров и планирования путешествий                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Присяжная Мария Владимировна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Старший преподаватель            </div>
+            </div>
+</div>
+
+                    
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        28.09.2021 ⟶ 02.07.2022                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Школа экономики и менеджмента">
+                            Школа экономики и менеджмента                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/779"
+                   class="project-link">
+                    Разработка Telegram-бота «ViewVL»                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Присяжная Мария Владимировна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Старший преподаватель            </div>
+            </div>
+</div>
+
+                    
+        
+<div class="card card__alt bg-light mb-1">
+    <div class="card-header">
+        <div class="">
+                            <div class="f-S text-muted">
+                    <i data-feather="calendar" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                    <span class="position-relative">
+                        28.09.2021 ⟶ 02.07.2022                    </span>
+                </div>
+                <div class="f-S text-muted">
+                    <i data-feather="map-pin" class="icon-S mr-1 offset-top--1 position-relative"></i>
+
+                                            <span class="position-relative" title="Школа экономики и менеджмента">
+                            Школа экономики и менеджмента                        </span>
+                                    </div>
+                                    </div>
+    </div>
+    <div class="card-body">
+        <h3 class="f-N mb-2">
+            <strong>
+                <a href="https://projects.dvfu.ru/project/780"
+                   class="project-link">
+                    Анализ рождаемости в Приморском крае с применением факторной модели                </a>
+            </strong>
+        </h3>
+                    <div class="f-S text-muted">
+                <i data-feather="user" class="icon-S mr-1 offset-top--1 position-relative"></i>
+                <span class="position-relative">
+                    <strong>
+                        Присяжная Мария Владимировна                    </strong>
+                </span>
+            </div>
+            <div class="f-S text-muted">
+                Старший преподаватель            </div>
+            </div>
+</div>
+
+    
+        </div>
+
+    <div class="text-center">
+        <button class="projects-button text-uppercase f-XS" style="">Показать всё</button>
+        <button class="projects-button text-uppercase f-XS" style="display: none;">Скрыть</button>
+    </div>
+
+    
+
+
+      </div>
+
+    
+    <div class="tab-pane fade" id="pills-projects-my" role="tabpanel" aria-labelledby="pills-projects-my-tab">
+        
+            <p>Вы не участвуете ни в одном проекте. Найдите проект для себя!</p>
+        <p class="mb-0"><a href="https://projects.dvfu.ru" class="btn btn-primary btn-block">Посмотреть список проектов</a></p>
+    
+
+
+    </div>
+
+</div>
+</div></div>                                    </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card widget shadow-sm mb-2"
+                     data-widget-id="9"
+                     id="widgetId-9">
+                    <div class="card-header d-flex justify-content-between">
+                        <h2 class="f-M mb-0">
+                            <a href="/poll">Опросы</a>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="widgetPoll"></div>
+                    </div>
+                </div>
+                <div class="card-columns row">
+                    <div class="col">
+                        <div id="widgetId-16" class="card widget shadow-sm" data-widget-id="16"><div class="card-header d-flex justify-content-between"><h2 class="f-M mb-0">Важно знать</h2><span class="d-block d-lg-none font-weight-bold"><span class="widgetUp mx-1"><i data-feather="arrow-up" width="13" height="13"></i></span><span class="widgetDown ml-2"><i data-feather="arrow-down" width="13" height="13"></i></span></span><span class="d-none move-icon"><i data-feather="move" width="13" height="13"></i></span></div><div class="card-body">
+    <div class='list-group'>
+        <a class='list-group-item list-group-item-action' href=link/8f1daf0342fbfdf11b7ea9d47648158e>
+            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__document"></span>
+            Памятка о получении справки для занятий по физической культуре        </a>
+    </div>
+    <div class='list-group'>
+        <a class='list-group-item list-group-item-action' href=link/cc7020a0979141d9892e90818aa315a3>
+            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__document"></span>
+            Алгоритм оказания экстренной и неотложной медицинской помощи        </a>
+    </div>
+    <div class='list-group'>
+        <a class='list-group-item list-group-item-action' href=link/1ed53356c490e2b2f65bbf25a1879ebb>
+            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__document"></span>
+            Памятка по организации оказания неотложной и экстренной медицинской помощи студентам и сотрудникам        </a>
+    </div>
+    <div class='list-group'>
+        <a class='list-group-item list-group-item-action' href=link/b332644ada76b7006d609434a190c62d>
+            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__document"></span>
+            Памятка о медико-психологической помощи        </a>
+    </div>
+</div></div>                    </div>
+                </div>
+
+                <div class="promo" id="card-promo">
+                                                        </div>
+
+                                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h2 class="f-M mb-0">Популярные сервисы</h2>
+                        </div>
+                        <div class="card-body pt-2">
+                            <div class="list-group">
+                                                                                                                                            <a href="/schedule"
+                                           data-service-id="48"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="class-schedules"
+                                           data-service-title="Расписание занятий"
+                                                                                       title="Расписание занятий"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__class-schedules"></span>Расписание занятий                                        </a>
+
+                                                                            
+                                                                                                                                                <a href="/gradebook"
+                                           data-service-id="31"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="new-egradebook"
+                                           data-service-title="Зачётная книжка"
+                                                                                       title="Зачётная книжка"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__new-egradebook"></span>Зачётная книжка                                        </a>
+
+                                                                            
+                                                                                                                                                <a href="/brs/rating-plan/"
+                                           data-service-id="69"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="rating-plans"
+                                           data-service-title="Рейтинг-планы"
+                                                                                       title="Рейтинг-планы"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__rating-plans"></span>Рейтинг-планы                                        </a>
+
+                                                                            
+                                                                                                                                                <a href="/page/service/email"
+                                           data-service-id="16"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="email"
+                                           data-service-title="Почта"
+                                                                                       title="Почта"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__email"></span>Почта                                        </a>
+
+                                                                            
+                                                                                                                                                <a href="/pass"
+                                           data-service-id="68"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="pass"
+                                           data-service-title="Заказ пропуска"
+                                                                                       title="Заказ пропуска"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__pass"></span>Заказ пропуска                                        </a>
+
+                                                                            
+                                                                                                                                                <a href="/settle"
+                                           data-service-id="63"
+                                           class="list-group-item list-group-item-action js-service-link"
+                                           data-service-name="settle"
+                                           data-service-title="Заселение 25-26"
+                                                                                       title="Заселение 25-26"
+                                        >
+                                            <span class="service-icon menu-icon d-inline-block align-middle mr-1 service-icon__settle"></span>Заселение 25-26                                        </a>
+
+                                                                            
+                                                                </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+    <footer class="footer bg-whiteColour py-6 main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-8">
+                    <p>&copy; 2026 «Мой Универ». Управление информатизации ДВФУ.<br /> Информация, размещённая на&nbsp;данном сайте, является собственностью ДВФУ. Любое копирование материалов сайта без&nbsp;разрешения владельца запрещено.</p>
+                </div>
+                                                <div class="col-12 col-md-6 col-lg-8">
+                    <a href="#"
+                       class="bvi-open text-dark text-uppercase font-weight-bold mb-0 mr-2 f-S"
+                       title="Версия для слабовидящих">
+                        <i class="bvi-icon bvi-eye"></i>
+                        Версия для слабовидящих                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="vue-modal"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="jsModal" tabindex="-1" role="dialog" aria-labelledby="jsModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jsModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="jsModalBody">
+
+            </div>
+            <div class="modal-footer" id="jsModalFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/assets/9bc48f7416b8d39cd1f85fa822cfcabe/js/app.js?v=1767252294"></script>
+<script src="/assets/cf51e4117c0ece40d43acc7e4ab56ba5/jquery.min.js?v=1767252294"></script>
+<script src="/assets/54b20f6ba4e547b70424ad897d6312ef/yii.js?v=1767252296"></script>
+<script src="/assets/306138231c6aef3066358db1592b3c64/js/bootstrap.bundle.js?v=1767252295"></script>
+<script type="module" src="/assets/ada748d2b6dff18dc20c070842720f0a/js/app.js?v=1767252294"></script>
+<script type="module" src="/assets/ee1d4d854c3436aeffa59ebd51579afa/js/notification.js?v=1767252294"></script>
+<script type="module" src="/assets/e529b51af3f97c8156e7a0c706c86d5c/js/app.js?v=1767252293"></script>    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132455446-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-132455446-2');
+</script>-->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) {
+                return;
+            }
+        }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(62906206, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62906206" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>
