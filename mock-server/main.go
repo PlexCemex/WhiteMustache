@@ -27,13 +27,13 @@ type Vacancy struct {
 }
 
 type VacancyCreateRequest struct {
-	Salary      string `json:"salary"`
-	Title       string `json:"title"`
-	DateOfBegin string `json:"dateofbegin"`
-	DateOfEnd   string `json:"dateofend"`
+	Salary       string `json:"salary"`
+	Title        string `json:"title"`
+	DateOfBegin  string `json:"dateofbegin"`
+	DateOfEnd    string `json:"dateofend"`
 	Organization string `json:"organization"`
-	Description string `json:"description"`
-	TypesOfWork string `json:"typesofwork"`
+	Description  string `json:"description"`
+	TypesOfWork  string `json:"typesofwork"`
 }
 
 type RequestCreateInput struct {
@@ -579,6 +579,19 @@ func main() {
 		withLogging(withCORS(handleRequestList)))
 	http.HandleFunc("/JobService/hs/jobservice/checkaccount",
 		withLogging(withCORS(handleCheckAccount)))
+
+	// http.HandleFunc("/JobService/hs/jobservice/vacancy",
+	// 	withLogging((handleVacancyCreate)))
+	// http.HandleFunc("/JobService/hs/jobservice/vacancylist/",
+	// 	withLogging((handleVacancyList)))
+	// http.HandleFunc("/JobService/hs/jobservice/tags",
+	// 	withLogging((handleTags)))
+	// http.HandleFunc("/JobService/hs/jobservice/request",
+	// 	withLogging((handleRequestCreate)))
+	// http.HandleFunc("/JobService/hs/jobservice/requestlist",
+	// 	withLogging((handleRequestList)))
+	// http.HandleFunc("/JobService/hs/jobservice/checkaccount",
+	// 	withLogging((handleCheckAccount)))
 
 	log.Println("Mock JobService listening on :80")
 	if err := http.ListenAndServe(":80", nil); err != nil {

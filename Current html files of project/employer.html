@@ -690,7 +690,7 @@
         async function fetchResponses(vacancyNumber) {
             try {
                 const response = await fetch(API_ENDPOINTS.requestList, {
-                    method: 'POST',
+                    method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ vacancy: vacancyNumber })
                 });
