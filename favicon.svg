@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#1e3a8a"/>
+  
+  <!-- White Mustache -->
+  <path d="M 32 28 Q 20 24 12 28 Q 10 28 10 30 Q 10 32 12 32 Q 22 28 32 32 Q 42 28 52 32 Q 54 32 54 30 Q 54 28 52 28 Q 44 24 32 28 Z" fill="#ffffff"/>
+  
+  <!-- Left curl -->
+  <path d="M 12 30 Q 8 30 6 32 Q 5 33 6 34 Q 8 33 12 32" fill="#ffffff"/>
+  
+  <!-- Right curl -->
+  <path d="M 52 30 Q 56 30 58 32 Q 59 33 58 34 Q 56 33 52 32" fill="#ffffff"/>
+</svg>
