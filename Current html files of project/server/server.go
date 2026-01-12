@@ -11,6 +11,7 @@ func main() {
 	http.HandleFunc("/main.html", serveMain)
 	http.HandleFunc("/vacancy.html", serveVacancy)
 	http.HandleFunc("/employer.html", serveEmployer)
+	http.HandleFunc("/favicon.svg", favicon)
 
 	// Запуск сервера на порту 8080
 	log.Println("Сервер запущен на http://localhost:8080")
@@ -27,4 +28,8 @@ func serveVacancy(w http.ResponseWriter, r *http.Request) {
 
 func serveEmployer(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "employer.html")
+}
+
+func favicon(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "favicon.svg")
 }
