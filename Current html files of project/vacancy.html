@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Платформа подработки ДВФУ — Вакансии</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f9fa;
@@ -30,7 +36,11 @@
             gap: 20px;
         }
 
-        .logo { font-size: 20px; font-weight: 600; white-space: nowrap; }
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
 
         nav {
             flex: 1;
@@ -39,7 +49,11 @@
             gap: 30px;
         }
 
-        nav a { color: white; text-decoration: none; font-size: 15px; }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
 
         .user-info {
             font-size: 13px;
@@ -68,20 +82,22 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        input, select {
+        input,
+        select {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 14px;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #0066cc;
-            box-shadow: 0 0 4px rgba(0,102,204,0.3);
+            box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
         }
 
         button {
@@ -96,8 +112,14 @@
             transition: all 0.3s;
         }
 
-        button:hover { background: #003d82; transform: translateY(-2px); }
-        button:active { transform: translateY(0); }
+        button:hover {
+            background: #003d82;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
 
         .vacancies-grid {
             display: grid;
@@ -111,12 +133,12 @@
             padding: 20px;
             border-radius: 8px;
             border-left: 4px solid #0066cc;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
         }
 
         .vacancy-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
             transform: translateY(-4px);
         }
 
@@ -190,20 +212,26 @@
             font-weight: 500;
         }
 
-        .btn-respond:hover { background: #003d82; }
+        .btn-respond:hover {
+            background: #003d82;
+        }
 
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
-        .modal.active { display: flex; }
+        .modal.active {
+            display: flex;
+        }
 
         .modal-content {
             background: white;
@@ -245,7 +273,8 @@
             font-size: 14px;
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -297,7 +326,9 @@
             background: #999;
         }
 
-        .modal-buttons .btn-cancel:hover { background: #777; }
+        .modal-buttons .btn-cancel:hover {
+            background: #777;
+        }
 
         .notifications-section {
             background: white;
@@ -321,7 +352,7 @@
             border-radius: 8px;
             border-left: 4px solid #28a745;
             margin-bottom: 10px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         }
 
         .notification-header {
@@ -442,7 +473,7 @@
             height: 60px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
         }
 
@@ -462,364 +493,434 @@
         }
 
         @media (max-width: 600px) {
-            .controls { grid-template-columns: 1fr; }
-            .vacancies-grid { grid-template-columns: 1fr; }
-            .checkbox-group { grid-template-columns: 1fr; }
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            .vacancies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <div class="header-content">
-        <div class="logo">Платформа подработки ДВФУ</div>
-        <nav>
-            <a href="main.html">Главная</a>
-            <a href="vacancy.html">Вакансии</a>
-            <a href="employer.html">Работодателям</a>
-        </nav>
-        <div id="userInfo" class="user-info">Не авторизован</div>
-    </div>
-</header>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="favicon.svg" alt="Логотип ДВФУ" style="height:28px; vertical-align:middle; margin-right:8px;">
+                Платформа подработки ДВФУ
+            </div>
+            <nav>
+                <a href="main.html">Главная</a>
+                <a href="vacancy.html">Вакансии</a>
+                <a href="employer.html">Работодателям</a>
+            </nav>
+            <div id="userInfo" class="user-info">Не авторизован</div>
+        </div>
+    </header>
 
-<div class="container">
-    <h1 class="page-title">Доступные вакансии</h1>
 
-    <div class="controls">
-        <input type="number" id="salaryMin" placeholder="Мин. зарплата" min="0">
-        <input type="date" id="dateBegin" placeholder="Дата начала">
-        <input type="date" id="dateEnd" placeholder="Дата окончания">
-        <select id="tagsFilter">
-            <option value="">Выберите тег...</option>
-        </select>
-        <button onclick="applyFilters()">Применить фильтры</button>
-    </div>
+    <div class="container">
+        <h1 class="page-title">Доступные вакансии</h1>
 
-    <div id="notificationsContainer" style="display:none;">
-        <div class="notifications-section">
-            <div class="notifications-title">✓ Ваши одобрения</div>
-            <div id="notificationsList"></div>
+        <div class="controls">
+            <input type="number" id="salaryMin" placeholder="Мин. зарплата" min="0">
+            <input type="date" id="dateBegin" placeholder="Дата начала">
+            <input type="date" id="dateEnd" placeholder="Дата окончания">
+            <select id="tagsFilter">
+                <option value="">Выберите тег...</option>
+            </select>
+            <button onclick="applyFilters()">Применить фильтры</button>
+        </div>
+
+        <div id="notificationsContainer" style="display:none;">
+            <div class="notifications-section">
+                <div class="notifications-title">✓ Ваши одобрения</div>
+                <div id="notificationsList"></div>
+            </div>
+        </div>
+
+        <div class="vacancies-grid" id="vacanciesContainer">
+            <div style="text-align: center; color: #999; padding: 40px; grid-column: 1/-1;">
+                Загрузка вакансий...
+            </div>
         </div>
     </div>
 
-    <div class="vacancies-grid" id="vacanciesContainer">
-        <div style="text-align: center; color: #999; padding: 40px; grid-column: 1/-1;">
-            Загрузка вакансий...
+    <!-- Modal для отклика -->
+    <div class="modal" id="respondModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Отклик на вакансию</span>
+                <button class="modal-close" onclick="closeModal('respondModal')">✕</button>
+            </div>
+            <form onsubmit="submitResponse(event)">
+                <div class="form-group">
+                    <label>Вакансия: <span id="vacancyTitle"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Дата начала:</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Дата окончания:</label>
+                    <input type="date" id="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label>О себе:</label>
+                    <textarea id="aboutMe" required placeholder="Расскажите о себе, опыте..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Выберите компетенции:</label>
+                    <div class="checkbox-group" id="tagsCheckbox"></div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-cancel" onclick="closeModal('respondModal')">Отменить</button>
+                    <button type="submit" style="background: #0066cc;">Отправить отклик</button>
+                </div>
+            </form>
         </div>
     </div>
-</div>
 
-<!-- Modal для отклика -->
-<div class="modal" id="respondModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Отклик на вакансию</span>
-            <button class="modal-close" onclick="closeModal('respondModal')">✕</button>
-        </div>
-        <form onsubmit="submitResponse(event)">
-            <div class="form-group">
-                <label>Вакансия: <span id="vacancyTitle"></span></label>
+    <!-- Modal для просмотра ответа работодателя -->
+    <div class="modal" id="notifyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Одобренный отклик</span>
+                <button class="modal-close" onclick="closeModal('notifyModal')">✕</button>
             </div>
-            <div class="form-group">
-                <label>Дата начала:</label>
-                <input type="date" id="startDate" required>
-            </div>
-            <div class="form-group">
-                <label>Дата окончания:</label>
-                <input type="date" id="endDate" required>
-            </div>
-            <div class="form-group">
-                <label>О себе:</label>
-                <textarea id="aboutMe" required placeholder="Расскажите о себе, опыте..."></textarea>
-            </div>
-            <div class="form-group">
-                <label>Выберите компетенции:</label>
-                <div class="checkbox-group" id="tagsCheckbox"></div>
+            <div class="notify-body">
+                <div class="notify-vacancy">
+                    <div id="notifyVacancyTitle" class="notify-vacancy-title">Вакансия</div>
+                    <div id="notifyVacancyOrg" class="notify-vacancy-org"></div>
+                    <div id="notifyVacancyDates" class="notify-vacancy-meta"></div>
+                    <div id="notifyVacancySalary" class="notify-vacancy-salary"></div>
+                </div>
+                <div class="notify-message">
+                    <h4>Сообщение от работодателя</h4>
+                    <div id="notifyMessageText" class="notify-message-text"></div>
+                    <div id="notifyMessageDate" class="notify-message-date"></div>
+                </div>
             </div>
             <div class="modal-buttons">
-                <button type="button" class="btn-cancel" onclick="closeModal('respondModal')">Отменить</button>
-                <button type="submit" style="background: #0066cc;">Отправить отклик</button>
+                <button type="button" class="btn-cancel" onclick="closeModal('notifyModal')">Закрыть</button>
             </div>
-        </form>
-    </div>
-</div>
-
-<!-- Modal для просмотра ответа работодателя -->
-<div class="modal" id="notifyModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Одобренный отклик</span>
-            <button class="modal-close" onclick="closeModal('notifyModal')">✕</button>
-        </div>
-        <div class="notify-body">
-            <div class="notify-vacancy">
-                <div id="notifyVacancyTitle" class="notify-vacancy-title">Вакансия</div>
-                <div id="notifyVacancyOrg" class="notify-vacancy-org"></div>
-                <div id="notifyVacancyDates" class="notify-vacancy-meta"></div>
-                <div id="notifyVacancySalary" class="notify-vacancy-salary"></div>
-            </div>
-            <div class="notify-message">
-                <h4>Сообщение от работодателя</h4>
-                <div id="notifyMessageText" class="notify-message-text"></div>
-                <div id="notifyMessageDate" class="notify-message-date"></div>
-            </div>
-        </div>
-        <div class="modal-buttons">
-            <button type="button" class="btn-cancel" onclick="closeModal('notifyModal')">Закрыть</button>
         </div>
     </div>
-</div>
 
-<!-- Modal для FAQ -->
-<div class="modal" id="faqModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Справка и предложения</span>
-            <button class="modal-close" onclick="closeModal('faqModal')">✕</button>
-        </div>
-        <h3 style="color: #003d82; margin-bottom: 15px;">Часто задаваемые вопросы</h3>
-        <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Как откликнуться на вакансию?</strong><br>
-            A: Нажмите кнопку «Откликнуться» на вакансии, заполните дату работы и расскажите о себе.
-        </p>
-        <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Что такое компетенции?</strong><br>
-            A: Это теги, соответствующие вашим навыкам для конкретной вакансии.
-        </p>
-        <p style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Как узнать о решении?</strong><br>
-            A: Вы получите уведомление в разделе «Ваши одобрения».
-        </p>
-
-        <form onsubmit="submitSuggestion(event)" style="border-top: 1px solid #ddd; padding-top: 20px;">
-            <label style="color: #003d82; font-weight: 600; margin-bottom: 10px; display: block;">
-                Ваше предложение или претензия:
-            </label>
-            <textarea id="suggestion" required
-                      placeholder="Опишите вашу идею или проблему..."
-                      style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 13px; font-family: inherit; min-height: 80px;"></textarea>
-            <button type="submit" style="margin-top: 10px; width: 100%; background: #0066cc;">Отправить</button>
-        </form>
-    </div>
-</div>
-
-<button class="faq-btn" onclick="openModal('faqModal')">?</button>
-
-<footer>
-    <p>&copy; 2026 Платформа подработки ДВФУ.</p>
-</footer>
-
-<script>
-    const apiServer = 'http://localhost';
-
-    let currentVacancyId = null;
-    let allTags = [];
-    let allVacancies = [];
-    let currentUser = null;
-    let notificationsData = [];
-
-    function getCurrentUser() {
-        const raw = localStorage.getItem('jobPlatformUser');
-        if (!raw) return null;
-        try { return JSON.parse(raw); } catch (_) { return null; }
-    }
-
-    function initUser() {
-        currentUser = getCurrentUser();
-        const info = document.getElementById('userInfo');
-
-        if (!currentUser) {
-            if (info) info.textContent = 'Не авторизован';
-            return;
-        }
-
-        const isEmployer = !!currentUser.organization;
-        const isStudent  = !!currentUser.student;
-
-        let roleLabel;
-        if (isEmployer && isStudent)      roleLabel = 'Студент и работодатель';
-        else if (isEmployer)             roleLabel = 'Работодатель';
-        else if (isStudent)              roleLabel = 'Студент';
-        else                             roleLabel = 'Пользователь платформы';
-
-        if (info) info.textContent = currentUser.login + ' — ' + roleLabel;
-    }
-
-    async function loadVacancies() {
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/vacancylist/');
-            allVacancies = await res.json();
-            displayVacancies(allVacancies);
-            loadNotifications();
-        } catch (e) {
-            document.getElementById('vacanciesContainer').innerHTML =
-                '<div style="grid-column:1/-1; color:red; text-align:center;">Ошибка подключения к серверу</div>';
-        }
-    }
-
-    async function loadTags() {
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/tags');
-            allTags = await res.json();
-            populateTagFilter();
-        } catch (e) {
-            console.error('Ошибка загрузки тегов', e);
-        }
-    }
-
-    function populateTagFilter() {
-        const select = document.getElementById('tagsFilter');
-        allTags.forEach(tag => {
-            const opt = document.createElement('option');
-            opt.value = tag;
-            opt.textContent = tag;
-            select.appendChild(opt);
-        });
-
-        const checkboxContainer = document.getElementById('tagsCheckbox');
-        allTags.forEach(tag => {
-            const label = document.createElement('label');
-            label.className = 'checkbox-item';
-            label.innerHTML = `<input type="checkbox" value="${tag}"> ${tag}`;
-            checkboxContainer.appendChild(label);
-        });
-    }
-
-    function displayVacancies(vacancies) {
-        const container = document.getElementById('vacanciesContainer');
-        if (!vacancies || vacancies.length === 0) {
-            container.innerHTML =
-                '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансий не найдено</div>';
-            return;
-        }
-
-        container.innerHTML = vacancies.map(v => `
-            <div class="vacancy-card">
-                <div class="vacancy-header">
-                    <div class="vacancy-title">${v.Title}</div>
-                </div>
-                <div class="vacancy-org">${v.Organization}</div>
-                <div class="vacancy-salary">₽ ${Number(v.Salary).toLocaleString('ru-RU')}</div>
-                <div class="vacancy-dates">
-                    ${formatDate(v.DateOfBegin)} - ${formatDate(v.DateOfEnd)}
-                </div>
-                <div class="vacancy-tags">
-                    ${(v.TypesOfWork || []).map(t => `<span class="tag">${t}</span>`).join('')}
-                </div>
-                <div class="vacancy-desc">${v.Description}</div>
-                <button class="btn-respond" onclick="openRespondModal('${v.Number}', '${v.Title}')">
-                    Откликнуться
-                </button>
+    <!-- Modal для FAQ -->
+    <div class="modal" id="faqModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Справка и предложения</span>
+                <button class="modal-close" onclick="closeModal('faqModal')">✕</button>
             </div>
-        `).join('');
-    }
+            <h3 style="color: #003d82; margin-bottom: 15px;">Часто задаваемые вопросы</h3>
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Как откликнуться на вакансию?</strong><br>
+                A: Нажмите кнопку «Откликнуться» на вакансии, заполните дату работы и расскажите о себе.
+            </p>
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Что такое компетенции?</strong><br>
+                A: Это теги, соответствующие вашим навыкам для конкретной вакансии.
+            </p>
+            <p style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Как узнать о решении?</strong><br>
+                A: Вы получите уведомление в разделе «Ваши одобрения».
+            </p>
 
-    function formatDate(dateStr) {
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    }
+            <form onsubmit="submitSuggestion(event)" style="border-top: 1px solid #ddd; padding-top: 20px;">
+                <label style="color: #003d82; font-weight: 600; margin-bottom: 10px; display: block;">
+                    Ваше предложение или претензия:
+                </label>
+                <textarea id="suggestion" required placeholder="Опишите вашу идею или проблему..."
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 13px; font-family: inherit; min-height: 80px;"></textarea>
+                <button type="submit" style="margin-top: 10px; width: 100%; background: #0066cc;">Отправить</button>
+            </form>
+        </div>
+    </div>
 
-    function formatNotifyDate(dateStr) {
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    }
+    <button class="faq-btn" onclick="openModal('faqModal')">?</button>
 
-    function applyFilters() {
-        let filtered = allVacancies;
+    <footer>
+        <p>&copy; 2026 Платформа подработки ДВФУ. Информация, размещённая на данном сайте, является собственностью ДВФУ. Любое копирование материалов сайта без разрешения владельца запрещено.</p>
+    </footer>
 
-        const salary = document.getElementById('salaryMin').value;
-        if (salary) {
-            filtered = filtered.filter(v => Number(v.Salary) >= parseInt(salary, 10));
+    <script>
+        const apiServer = 'http://localhost';
+
+        let currentVacancyId = null;
+        let allTags = [];
+        let allVacancies = [];
+        let currentUser = null;
+        let notificationsData = [];
+
+        function getCurrentUser() {
+            const raw = localStorage.getItem('jobPlatformUser');
+            if (!raw) return null;
+            try { return JSON.parse(raw); } catch (_) { return null; }
         }
 
-        const tag = document.getElementById('tagsFilter').value;
-        if (tag) {
-            filtered = filtered.filter(v => (v.TypesOfWork || []).includes(tag));
-        }
+        function initUser() {
+            currentUser = getCurrentUser();
+            const info = document.getElementById('userInfo');
 
-        displayVacancies(filtered);
-    }
-
-    function openRespondModal(vacancyId, vacancyTitle) {
-        if (!currentUser) {
-            alert('Для отклика нужно сначала войти на главной странице.');
-            window.location.href = 'main.html';
-            return;
-        }
-        if (!currentUser.student) {
-            alert('Отклик на вакансию доступен только студентам.');
-            return;
-        }
-
-        currentVacancyId = vacancyId;
-        document.getElementById('vacancyTitle').textContent = vacancyTitle;
-        document.getElementById('startDate').value = '';
-        document.getElementById('endDate').value = '';
-        document.getElementById('aboutMe').value = '';
-        document.querySelectorAll('#tagsCheckbox input[type="checkbox"]').forEach(cb => cb.checked = false);
-        openModal('respondModal');
-    }
-
-    async function submitResponse(e) {
-        e.preventDefault();
-
-        if (!currentUser || !currentUser.student) {
-            alert('Ошибка: студент не авторизован в системе.');
-            return;
-        }
-
-        const startDate = document.getElementById('startDate').value.replace(/-/g, '');
-        const endDate   = document.getElementById('endDate').value.replace(/-/g, '');
-        const description = document.getElementById('aboutMe').value;
-
-        const payload = {
-            startperiod: startDate,
-            endperiod: endDate,
-            student: currentUser.student,
-            description: description,
-            vacancy: currentVacancyId
-        };
-
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/request', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (res.ok) {
-                alert('Отклик отправлен успешно!');
-                closeModal('respondModal');
-                loadNotifications();
-            } else {
-                alert('Ошибка отправки отклика. Код: ' + res.status);
+            if (!currentUser) {
+                if (info) info.textContent = 'Не авторизован';
+                return;
             }
-        } catch (e) {
-            alert('Ошибка подключения: ' + e.message);
+
+            const isEmployer = !!currentUser.organization;
+            const isStudent = !!currentUser.student;
+
+            let roleLabel;
+            if (isEmployer && isStudent) roleLabel = 'Студент и работодатель';
+            else if (isEmployer) roleLabel = 'Работодатель';
+            else if (isStudent) roleLabel = 'Студент';
+            else roleLabel = 'Пользователь платформы';
+
+            if (info) info.textContent = currentUser.login + ' — ' + roleLabel;
         }
-    }
 
-    function truncateText(text, maxLen) {
-        if (!text) return '';
-        if (text.length <= maxLen) return text;
-        return text.slice(0, maxLen) + '…';
-    }
+        async function loadVacancies() {
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/vacancylist/');
+                allVacancies = await res.json();
+                displayVacancies(allVacancies);
+                loadNotifications();
+            } catch (e) {
+                document.getElementById('vacanciesContainer').innerHTML =
+                    '<div style="grid-column:1/-1; color:red; text-align:center;">Ошибка подключения к серверу</div>';
+            }
+        }
 
-    async function loadNotifications() {
-        if (!currentUser || !currentUser.student) return;
+        async function loadTags() {
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/tags');
+                allTags = await res.json();
+                populateTagFilter();
+            } catch (e) {
+                console.error('Ошибка загрузки тегов', e);
+            }
+        }
 
-        try {
-            const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/mynotify/?student=' +
-                encodeURIComponent(currentUser.student)
-            );
-            if (!res.ok) return;
+        function populateTagFilter() {
+            const select = document.getElementById('tagsFilter');
+            allTags.forEach(tag => {
+                const opt = document.createElement('option');
+                opt.value = tag;
+                opt.textContent = tag;
+                select.appendChild(opt);
+            });
 
-            const notifications = await res.json();
-            if (notifications && notifications.length > 0) {
-                notificationsData = notifications;
-                document.getElementById('notificationsContainer').style.display = 'block';
-                document.getElementById('notificationsList').innerHTML = notifications.map((n, index) => `
+            const checkboxContainer = document.getElementById('tagsCheckbox');
+            allTags.forEach(tag => {
+                const label = document.createElement('label');
+                label.className = 'checkbox-item';
+                label.innerHTML = `<input type="checkbox" value="${tag}"> ${tag}`;
+                checkboxContainer.appendChild(label);
+            });
+        }
+
+        function displayVacancies(vacancies) {
+            const container = document.getElementById('vacanciesContainer');
+
+            if (!vacancies || vacancies.length === 0) {
+                container.innerHTML =
+                    '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансий не найдено</div>';
+                return;
+            }
+
+            container.innerHTML = vacancies.map(v => {
+                const salaryText = (v.Salary && Number(v.Salary) > 0)
+                    ? `₽ ${Number(v.Salary).toLocaleString('ru-RU')}`
+                    : 'Договорная';
+
+                return `
+        <div class="vacancy-card">
+            <div class="vacancy-header">
+                <div class="vacancy-title">${v.Title}</div>
+            </div>
+            <div class="vacancy-org">${v.Organization}</div>
+            <div class="vacancy-salary">${salaryText}</div>
+            <div class="vacancy-dates">
+                ${formatDate(v.DateOfBegin)} - ${formatDate(v.DateOfEnd)}
+            </div>
+            <div class="vacancy-tags">
+                ${(v.TypesOfWork || []).map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <div class="vacancy-desc">${v.Description}</div>
+            <button class="btn-respond" onclick="openRespondModal('${v.Number}', '${v.Title}')">
+                Откликнуться
+            </button>
+        </div>
+        `;
+            }).join('');
+        }
+
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return '';
+            return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        }
+
+        function formatNotifyDate(dateStr) {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return '';
+            return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        }
+
+        function applyFilters() {
+            let filtered = allVacancies;
+
+            const salaryInput = document.getElementById('salaryMin');
+            const salaryRaw = salaryInput.value.trim();
+
+            if (salaryRaw !== '') {
+                const salary = parseInt(salaryRaw, 10);
+
+                if (Number.isNaN(salary)) {
+                    alert('Минимальная сумма оплаты должна быть числом');
+                    salaryInput.focus();
+                    return;
+                }
+
+                if (salary < 0) {
+                    alert('Сумма оплаты не может быть меньше 0');
+                    salaryInput.focus();
+                    return;
+                }
+
+                filtered = filtered.filter(v => Number(v.Salary) >= salary);
+            }
+
+            const tag = document.getElementById('tagsFilter').value;
+            if (tag) {
+                filtered = filtered.filter(v => v.TypesOfWork && v.TypesOfWork.includes(tag));
+            }
+
+            displayVacancies(filtered);
+        }
+
+
+        function openRespondModal(vacancyId, vacancyTitle) {
+            if (!currentUser) {
+                alert('Для отклика нужно сначала войти на главной странице.');
+                window.location.href = 'main.html';
+                return;
+            }
+            if (!currentUser.student) {
+                alert('Отклик на вакансию доступен только студентам.');
+                return;
+            }
+
+            currentVacancyId = vacancyId;
+            document.getElementById('vacancyTitle').textContent = vacancyTitle;
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            document.getElementById('aboutMe').value = '';
+            document.querySelectorAll('#tagsCheckbox input[type="checkbox"]').forEach(cb => cb.checked = false);
+            openModal('respondModal');
+        }
+
+        async function submitResponse(e) {
+            e.preventDefault();
+
+            if (!currentUser || !currentUser.student) {
+                alert('Только студент может откликаться на вакансии');
+                return;
+            }
+
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const description = document.getElementById('aboutMe').value;
+
+            const startDateStr = startDateInput.value;
+            const endDateStr = endDateInput.value;
+
+            if (!startDateStr || !endDateStr) {
+                alert('Укажите даты начала и окончания работы');
+                return;
+            }
+
+            const start = new Date(startDateStr);
+            const end = new Date(endDateStr);
+
+            if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+                alert('Указаны некорректные даты');
+                return;
+            }
+
+            if (start > end) {
+                alert('Дата начала не может быть позже даты окончания');
+                return;
+            }
+
+            const selectedTags = Array.from(
+                document.querySelectorAll('#tagsCheckbox input[type="checkbox"]:checked')
+            ).map(cb => cb.value);
+
+            if (selectedTags.length === 0) {
+                alert('Выберите хотя бы один тег');
+                return;
+            }
+
+            const payload = {
+                startperiod: startDateStr,
+                endperiod: endDateStr,
+                student: currentUser.student,
+                description: description,
+                vacancy: currentVacancyId
+            };
+
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    alert('Отклик отправлен!');
+                    closeModal('respondModal');
+                    loadNotifications();
+                } else {
+                    alert('Ошибка отправки отклика: ' + res.status);
+                }
+            } catch (e2) {
+                alert(e2.message);
+            }
+        }
+
+
+
+        function truncateText(text, maxLen) {
+            if (!text) return '';
+            if (text.length <= maxLen) return text;
+            return text.slice(0, maxLen) + '…';
+        }
+
+        async function loadNotifications() {
+            if (!currentUser || !currentUser.student) return;
+
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/mynotify/?student=' +
+                    encodeURIComponent(currentUser.student)
+                );
+                if (!res.ok) return;
+
+                const notifications = await res.json();
+                if (notifications && notifications.length > 0) {
+                    notificationsData = notifications;
+                    document.getElementById('notificationsContainer').style.display = 'block';
+                    document.getElementById('notificationsList').innerHTML = notifications.map((n, index) => `
                     <div class="notification-item">
                         <div class="notification-header">
                             <span class="notification-title">Отклик одобрен</span>
@@ -833,76 +934,82 @@
                         </button>
                     </div>
                 `).join('');
+                }
+            } catch (e) {
+                console.error('Ошибка загрузки уведомлений', e);
             }
-        } catch (e) {
-            console.error('Ошибка загрузки уведомлений', e);
-        }
-    }
-
-    async function openNotificationModal(index) {
-        const n = notificationsData[index];
-        if (!n) return;
-
-        let v = {};
-        try {
-            const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/vacancyfromnotify/?numberofrequest=' +
-                encodeURIComponent(n.NumberOfRequest)
-            );
-            if (res.ok) {
-                const arr = await res.json();
-                if (arr && arr.length > 0) v = arr[0];
-            }
-        } catch (e) {
-            console.error('Ошибка загрузки вакансии из уведомления', e);
         }
 
-        document.getElementById('notifyVacancyTitle').textContent = v.Title || 'Вакансия';
-        document.getElementById('notifyVacancyOrg').textContent   = v.Organization || '';
-        document.getElementById('notifyVacancyDates').textContent =
-            (v.DateOfBegin && v.DateOfEnd)
-                ? `${formatDate(v.DateOfBegin)} — ${formatDate(v.DateOfEnd)}`
-                : '';
-        document.getElementById('notifyVacancySalary').textContent =
-            v.Salary ? '₽ ' + Number(v.Salary).toLocaleString('ru-RU') : '';
+        async function openNotificationModal(index) {
+            const n = notificationsData[index];
+            if (!n) return;
 
-        document.getElementById('notifyMessageText').textContent = n.Text || '';
-        document.getElementById('notifyMessageDate').textContent =
-            n.Date ? 'Дата сообщения: ' + formatNotifyDate(n.Date) : '';
-
-        openModal('notifyModal');
-    }
-
-    async function submitSuggestion(e) {
-        e.preventDefault();
-        const text = document.getElementById('suggestion').value;
-
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/faq', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ suggestion: text })
-            });
-            if (res.ok) {
-                alert('Спасибо за ваше предложение!');
-                document.getElementById('suggestion').value = '';
-                closeModal('faqModal');
-            } else {
-                alert('Ошибка отправки. Код: ' + res.status);
+            let v = {};
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/vacancyfromnotify/?numberofrequest=' +
+                    encodeURIComponent(n.NumberOfRequest)
+                );
+                if (res.ok) {
+                    const arr = await res.json();
+                    if (arr && arr.length > 0) v = arr[0];
+                }
+            } catch (e) {
+                console.error('Ошибка загрузки вакансии из уведомления', e);
             }
-        } catch (e) {
-            alert('Ошибка подключения');
+
+            document.getElementById('notifyVacancyTitle').textContent = v.Title || 'Вакансия';
+            document.getElementById('notifyVacancyOrg').textContent = v.Organization || '';
+            document.getElementById('notifyVacancyDates').textContent =
+                (v.DateOfBegin && v.DateOfEnd)
+                    ? `${formatDate(v.DateOfBegin)} — ${formatDate(v.DateOfEnd)}`
+                    : '';
+
+            const notifySalaryText =
+                v && v.Salary && Number(v.Salary) > 0
+                    ? '₽ ' + Number(v.Salary).toLocaleString('ru-RU')
+                    : 'Договорная';
+            document.getElementById('notifyVacancySalary').textContent = notifySalaryText;
+
+            document.getElementById('notifyMessageText').textContent = n.Text || '';
+            document.getElementById('notifyMessageDate').textContent =
+                n.Date ? 'Дата сообщения: ' + formatNotifyDate(n.Date) : '';
+
+            openModal('notifyModal');
         }
-    }
 
-    function openModal(id)   { document.getElementById(id).classList.add('active'); }
-    function closeModal(id)  { document.getElementById(id).classList.remove('active'); }
 
-    // Инициализация
-    initUser();
-    loadTags();
-    loadVacancies();
-    setInterval(loadNotifications, 30000);
-</script>
+        async function submitSuggestion(e) {
+            e.preventDefault();
+            const text = document.getElementById('suggestion').value;
+
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/faq', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ suggestion: text })
+                });
+                if (res.ok) {
+                    alert('Спасибо за ваше предложение!');
+                    document.getElementById('suggestion').value = '';
+                    closeModal('faqModal');
+                } else {
+                    alert('Ошибка отправки. Код: ' + res.status);
+                }
+            } catch (e) {
+                alert('Ошибка подключения');
+            }
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // Инициализация
+        initUser();
+        loadTags();
+        loadVacancies();
+        setInterval(loadNotifications, 30000);
+    </script>
 </body>
+
 </html>

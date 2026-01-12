@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Платформа подработки ДВФУ — Работодателям</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f8f9fa;
@@ -30,7 +36,11 @@
             gap: 20px;
         }
 
-        .logo { font-size: 20px; font-weight: 600; white-space: nowrap; }
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
 
         nav {
             flex: 1;
@@ -39,7 +49,11 @@
             gap: 30px;
         }
 
-        nav a { color: white; text-decoration: none; font-size: 15px; }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
 
         .user-info {
             font-size: 13px;
@@ -66,7 +80,7 @@
             border-radius: 8px;
             margin-bottom: 25px;
             border-left: 4px solid #0066cc;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .section-title {
@@ -76,7 +90,9 @@
             margin-bottom: 20px;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -84,10 +100,12 @@
             font-family: inherit;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: #0066cc;
-            box-shadow: 0 0 4px rgba(0,102,204,0.3);
+            box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
         }
 
         button {
@@ -102,7 +120,10 @@
             transition: all 0.3s;
         }
 
-        button:hover { background: #003d82; transform: translateY(-2px); }
+        button:hover {
+            background: #003d82;
+            transform: translateY(-2px);
+        }
 
         .form-group {
             margin-bottom: 15px;
@@ -116,7 +137,9 @@
             font-size: 14px;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
         }
 
@@ -145,7 +168,7 @@
         }
 
         .vacancy-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
 
@@ -184,20 +207,26 @@
             background: #dc3545;
         }
 
-        .btn-danger:hover { background: #c82333; }
+        .btn-danger:hover {
+            background: #c82333;
+        }
 
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
-        .modal.active { display: flex; }
+        .modal.active {
+            display: flex;
+        }
 
         .modal-content {
             background: white;
@@ -312,7 +341,7 @@
             height: 60px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
         }
 
@@ -332,322 +361,397 @@
         }
 
         @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .vacancies-grid { grid-template-columns: 1fr; }
-            .checkbox-group { grid-template-columns: 1fr; }
-            .vacancy-item-actions { flex-direction: column; }
-            .request-actions { flex-direction: column; }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vacancies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .vacancy-item-actions {
+                flex-direction: column;
+            }
+
+            .request-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <div class="header-content">
-        <div class="logo">Платформа подработки ДВФУ</div>
-        <nav>
-            <a href="main.html">Главная</a>
-            <a href="vacancy.html">Вакансии</a>
-            <a href="employer.html">Работодателям</a>
-        </nav>
-        <div id="userInfo" class="user-info">Не авторизован</div>
-    </div>
-</header>
-
-<div class="container">
-    <h1 class="page-title">Портал работодателя</h1>
-
-    <div class="section">
-        <div class="section-title">+ Создать новую вакансию</div>
-        <form onsubmit="createVacancy(event)">
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Название должности *</label>
-                    <input type="text" id="newTitle" required placeholder="Например: Программист">
-                </div>
-                <div class="form-group">
-                    <label>Зарплата (₽) *</label>
-                    <input type="number" id="newSalary" required min="0" placeholder="0">
-                </div>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="favicon.svg" alt="Логотип ДВФУ" style="height:28px; vertical-align:middle; margin-right:8px;">
+                Платформа подработки ДВФУ
             </div>
+            <nav>
+                <a href="main.html">Главная</a>
+                <a href="vacancy.html">Вакансии</a>
+                <a href="employer.html">Работодателям</a>
+            </nav>
+            <div id="userInfo" class="user-info">Не авторизован</div>
+        </div>
+    </header>
 
-            <div class="form-grid" style="margin-top: 15px;">
-                <div class="form-group">
-                    <label>Дата начала приема откликов *</label>
-                    <input type="date" id="newDateBegin" required>
+
+    <div class="container">
+        <h1 class="page-title">Портал работодателя</h1>
+
+        <div class="section">
+            <div class="section-title">+ Создать новую вакансию</div>
+            <form onsubmit="createVacancy(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Название должности *</label>
+                        <input type="text" id="newTitle" required placeholder="Например: Программист">
+                    </div>
+                    <div class="form-group">
+                        <label>Зарплата (₽) *</label>
+                        <input type="number" id="newSalary" required min="0" placeholder="0">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Дата окончания приема откликов *</label>
-                    <input type="date" id="newDateEnd" required>
+
+                <div class="form-grid" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label>Дата начала приема откликов *</label>
+                        <input type="date" id="newDateBegin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата окончания приема откликов *</label>
+                        <input type="date" id="newDateEnd" required>
+                    </div>
                 </div>
+
+                <div class="form-group" style="margin-top: 15px;">
+                    <label>Описание вакансии *</label>
+                    <textarea id="newDescription" required placeholder="Опишите требования и условия работы..."
+                        style="min-height: 100px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Компетенции (теги) *</label>
+                    <div class="checkbox-group" id="newTagsCheckbox"></div>
+                </div>
+
+                <button type="submit" style="width: 100%; background: #28a745;">Создать вакансию</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Мои вакансии</div>
+            <div class="vacancies-grid" id="employerVacancies">
+                <div style="grid-column: 1/-1; text-align: center; color: #999;">Загрузка...</div>
             </div>
-
-            <div class="form-group" style="margin-top: 15px;">
-                <label>Описание вакансии *</label>
-                <textarea id="newDescription" required placeholder="Опишите требования и условия работы..." style="min-height: 100px;"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Компетенции (теги) *</label>
-                <div class="checkbox-group" id="newTagsCheckbox"></div>
-            </div>
-
-            <button type="submit" style="width: 100%; background: #28a745;">Создать вакансию</button>
-        </form>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Мои вакансии</div>
-        <div class="vacancies-grid" id="employerVacancies">
-            <div style="grid-column: 1/-1; text-align: center; color: #999;">Загрузка...</div>
         </div>
     </div>
-</div>
 
-<!-- Модалка откликов -->
-<div class="modal" id="requestsModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span id="requestsTitle">Отклики на вакансию</span>
-            <button class="modal-close" onclick="closeModal('requestsModal')">✕</button>
-        </div>
-        <div id="requestsList"></div>
-    </div>
-</div>
-
-<!-- Модалка одобрения -->
-<div class="modal" id="approveModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Одобрить отклик</span>
-            <button class="modal-close" onclick="closeModal('approveModal')">✕</button>
-        </div>
-        <form onsubmit="approveRequest(event)">
-            <div class="form-group">
-                <label>Сообщение кандидату (место, время, условия):</label>
-                <textarea id="approveMessage" required
-                          placeholder="Например: Подходите в кабинет C315 14.01.2026 с 13 до 14"
-                          style="min-height: 80px;"></textarea>
+    <!-- Модалка откликов -->
+    <div class="modal" id="requestsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="requestsTitle">Отклики на вакансию</span>
+                <button class="modal-close" onclick="closeModal('requestsModal')">✕</button>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button type="button" style="flex: 1; background: #999;" onclick="closeModal('approveModal')">
-                    Отмена
-                </button>
-                <button type="submit" style="flex: 1;">Одобрить</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- FAQ -->
-<div class="modal" id="faqModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span>Справка и предложения</span>
-            <button class="modal-close" onclick="closeModal('faqModal')">✕</button>
+            <div id="requestsList"></div>
         </div>
-        <h3 style="color: #003d82; margin-bottom: 15px;">Часто задаваемые вопросы</h3>
-        <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Как создать вакансию?</strong><br>
-            A: Заполните форму с названием, зарплатой, датами и описанием, выберите теги.
-        </p>
-        <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Как просмотреть отклики?</strong><br>
-            A: Нажмите «Отклики» на нужной вакансии.
-        </p>
-        <p style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
-            <strong>Q: Как одобрить кандидата?</strong><br>
-            A: Нажмите «Одобрить», введите информацию о встрече и времени.
-        </p>
-
-        <form onsubmit="submitSuggestion(event)" style="border-top: 1px solid #ddd; padding-top: 20px;">
-            <label style="color: #003d82; font-weight: 600; margin-bottom: 10px; display: block;">
-                Ваше предложение или претензия:
-            </label>
-            <textarea id="suggestion" required
-                      placeholder="Опишите вашу идею или проблему..."
-                      style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 13px; font-family: inherit; min-height: 80px;"></textarea>
-            <button type="submit" style="margin-top: 10px; width: 100%; background: #0066cc;">Отправить</button>
-        </form>
     </div>
-</div>
 
-<button class="faq-btn" onclick="openModal('faqModal')">?</button>
+    <!-- Модалка одобрения -->
+    <div class="modal" id="approveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Одобрить отклик</span>
+                <button class="modal-close" onclick="closeModal('approveModal')">✕</button>
+            </div>
+            <form onsubmit="approveRequest(event)">
+                <div class="form-group">
+                    <label>Сообщение кандидату (место, время, условия):</label>
+                    <textarea id="approveMessage" required
+                        placeholder="Например: Подходите в кабинет C315 14.01.2026 с 13 до 14"
+                        style="min-height: 80px;"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" style="flex: 1; background: #999;" onclick="closeModal('approveModal')">
+                        Отмена
+                    </button>
+                    <button type="submit" style="flex: 1;">Одобрить</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-<footer>
-    <p>&copy; 2026 Платформа подработки ДВФУ.</p>
-</footer>
+    <!-- FAQ -->
+    <div class="modal" id="faqModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Справка и предложения</span>
+                <button class="modal-close" onclick="closeModal('faqModal')">✕</button>
+            </div>
+            <h3 style="color: #003d82; margin-bottom: 15px;">Часто задаваемые вопросы</h3>
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Как создать вакансию?</strong><br>
+                A: Заполните форму с названием, зарплатой, датами и описанием, выберите теги.
+            </p>
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Как просмотреть отклики?</strong><br>
+                A: Нажмите «Отклики» на нужной вакансии.
+            </p>
+            <p style="margin-bottom: 20px; font-size: 13px; line-height: 1.6;">
+                <strong>Q: Как одобрить кандидата?</strong><br>
+                A: Нажмите «Одобрить», введите информацию о встрече и времени.
+            </p>
 
-<script>
-    const apiServer = 'http://localhost';
+            <form onsubmit="submitSuggestion(event)" style="border-top: 1px solid #ddd; padding-top: 20px;">
+                <label style="color: #003d82; font-weight: 600; margin-bottom: 10px; display: block;">
+                    Ваше предложение или претензия:
+                </label>
+                <textarea id="suggestion" required placeholder="Опишите вашу идею или проблему..."
+                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 13px; font-family: inherit; min-height: 80px;"></textarea>
+                <button type="submit" style="margin-top: 10px; width: 100%; background: #0066cc;">Отправить</button>
+            </form>
+        </div>
+    </div>
 
-    let allTags = [];
-    let currentOrgId = null;
-    let employerVacancies = [];
-    let currentRequestVacancyId = null;
-    let currentRequestNumber = null;
-    let currentUser = null;
+    <button class="faq-btn" onclick="openModal('faqModal')">?</button>
 
-    function getCurrentUser() {
-        const raw = localStorage.getItem('jobPlatformUser');
-        if (!raw) return null;
-        try { return JSON.parse(raw); } catch (_) { return null; }
-    }
+    <footer>
+        <p>&copy; 2026 Платформа подработки ДВФУ. Информация, размещённая на данном сайте, является собственностью ДВФУ.
+            Любое копирование материалов сайта без разрешения владельца запрещено.</p>
+    </footer>
 
-    function initUser() {
-        currentUser = getCurrentUser();
-        const info = document.getElementById('userInfo');
+    <script>
+        const apiServer = 'http://localhost';
 
-        if (!currentUser) {
-            if (info) info.textContent = 'Не авторизован';
-            alert('Для доступа к кабинету работодателя войдите на главной странице.');
-            window.location.href = 'main.html';
-            return false;
+        let allTags = [];
+        let currentOrgId = null;
+        let employerVacancies = [];
+        let currentRequestVacancyId = null;
+        let currentRequestNumber = null;
+        let currentUser = null;
+
+        function getCurrentUser() {
+            const raw = localStorage.getItem('jobPlatformUser');
+            if (!raw) return null;
+            try { return JSON.parse(raw); } catch (_) { return null; }
         }
 
-        if (!currentUser.organization) {
-            if (info) info.textContent = currentUser.login + ' — Студент';
-            alert('Ваш аккаунт не является аккаунтом работодателя.');
-            window.location.href = 'vacancy.html';
-            return false;
-        }
+        function initUser() {
+            currentUser = getCurrentUser();
+            const info = document.getElementById('userInfo');
 
-        const roleLabel = currentUser.student ? 'Студент и работодатель' : 'Работодатель';
-        if (info) info.textContent = currentUser.login + ' — ' + roleLabel;
-
-        currentOrgId = currentUser.organization;
-        return true;
-    }
-
-    async function init() {
-        if (!initUser()) return;
-        await loadTags();
-        await loadEmployerVacancies();
-    }
-
-    async function loadTags() {
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/tags');
-            allTags = await res.json();
-            populateTagsCheckbox();
-        } catch (e) {
-            console.error('Ошибка загрузки тегов', e);
-        }
-    }
-
-    function populateTagsCheckbox() {
-        const container = document.getElementById('newTagsCheckbox');
-        allTags.forEach(tag => {
-            const label = document.createElement('label');
-            label.className = 'checkbox-item';
-            label.innerHTML = `<input type="checkbox" value="${tag}"> ${tag}`;
-            container.appendChild(label);
-        });
-    }
-
-    async function createVacancy(e) {
-        e.preventDefault();
-        const title = document.getElementById('newTitle').value;
-        const salary = document.getElementById('newSalary').value;
-        const dateBegin = document.getElementById('newDateBegin').value.replace(/-/g, '');
-        const dateEnd   = document.getElementById('newDateEnd').value.replace(/-/g, '');
-        const description = document.getElementById('newDescription').value;
-
-        const selectedTags = Array.from(
-            document.querySelectorAll('#newTagsCheckbox input:checked')
-        ).map(cb => cb.value).join(',');
-
-        const payload = {
-            salary: salary,
-            title: title,
-            dateofbegin: dateBegin,
-            dateofend: dateEnd,
-            organization: currentOrgId,
-            description: description,
-            typesofwork: selectedTags
-        };
-
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/vacancy', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (res.ok) {
-                alert('Вакансия успешно создана!');
-                e.target.reset();
-                document.querySelectorAll('#newTagsCheckbox input').forEach(cb => cb.checked = false);
-                await loadEmployerVacancies();
-            } else {
-                alert('Ошибка создания вакансии. Код: ' + res.status);
+            if (!currentUser) {
+                if (info) info.textContent = 'Не авторизован';
+                alert('Для доступа к кабинету работодателя войдите на главной странице.');
+                window.location.href = 'main.html';
+                return false;
             }
-        } catch (e) {
-            alert('Ошибка подключения: ' + e.message);
-        }
-    }
 
-    async function loadEmployerVacancies() {
-        try {
-            const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/vacancylist/?organization=' +
-                encodeURIComponent(currentOrgId)
-            );
-            employerVacancies = await res.json();
-            displayEmployerVacancies();
-        } catch (e) {
-            document.getElementById('employerVacancies').innerHTML =
-                '<div style="grid-column:1/-1; color:red; text-align:center;">Ошибка подключения</div>';
-        }
-    }
+            if (!currentUser.organization) {
+                if (info) info.textContent = currentUser.login + ' — Студент';
+                alert('Ваш аккаунт не является аккаунтом работодателя.');
+                window.location.href = 'vacancy.html';
+                return false;
+            }
 
-    function displayEmployerVacancies() {
-        const container = document.getElementById('employerVacancies');
-        if (!employerVacancies || employerVacancies.length === 0) {
-            container.innerHTML =
-                '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансии еще не созданы</div>';
-            return;
+            const roleLabel = currentUser.student ? 'Студент и работодатель' : 'Работодатель';
+            if (info) info.textContent = currentUser.login + ' — ' + roleLabel;
+
+            currentOrgId = currentUser.organization;
+            return true;
         }
 
-        container.innerHTML = employerVacancies.map(v => `
-            <div class="vacancy-item">
-                <div class="vacancy-item-title">${v.Title}</div>
-                <div class="vacancy-item-salary">₽ ${Number(v.Salary).toLocaleString('ru-RU')}</div>
-                <div class="vacancy-item-dates">
-                    ${formatDate(v.DateOfBegin)} - ${formatDate(v.DateOfEnd)}
-                </div>
-                <div class="vacancy-item-actions">
-                    <button onclick="viewRequests('${v.Number}')">Отклики</button>
-                    <button class="btn-danger" onclick="closeVacancy('${v.Number}')">Закрыть</button>
-                </div>
-            </div>
-        `).join('');
-    }
+        async function init() {
+            if (!initUser()) return;
+            await loadTags();
+            await loadEmployerVacancies();
+        }
 
-    function formatDate(dateStr) {
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return '';
-        return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    }
+        async function loadTags() {
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/tags');
+                allTags = await res.json();
+                populateTagsCheckbox();
+            } catch (e) {
+                console.error('Ошибка загрузки тегов', e);
+            }
+        }
 
-    async function viewRequests(vacancyId) {
-        currentRequestVacancyId = vacancyId;
-        document.getElementById('requestsTitle').textContent = 'Отклики на вакансию №' + vacancyId;
+        function populateTagsCheckbox() {
+            const container = document.getElementById('newTagsCheckbox');
+            allTags.forEach(tag => {
+                const label = document.createElement('label');
+                label.className = 'checkbox-item';
+                label.innerHTML = `<input type="checkbox" value="${tag}"> ${tag}`;
+                container.appendChild(label);
+            });
+        }
 
-        try {
-            const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/requestlist/?vacancy=' + vacancyId
-            );
-            if (!res.ok) {
-                alert('Ошибка загрузки откликов. Код: ' + res.status);
+        async function createVacancy(e) {
+            e.preventDefault();
+
+            const titleInput = document.getElementById('newTitle');
+            const salaryInput = document.getElementById('newSalary');
+            const dateBeginInput = document.getElementById('newDateBegin');
+            const dateEndInput = document.getElementById('newDateEnd');
+            const descriptionInput = document.getElementById('newDescription');
+
+            const title = titleInput.value.trim();
+            const salaryStr = salaryInput.value.trim();
+            const dateBeginStr = dateBeginInput.value;
+            const dateEndStr = dateEndInput.value;
+            const description = descriptionInput.value.trim();
+
+            if (!title || !salaryStr || !dateBeginStr || !dateEndStr || !description) {
+                alert('Заполните все поля вакансии');
                 return;
             }
-            const requests = await res.json();
 
-            const list = document.getElementById('requestsList');
-            if (!requests || requests.length <= 1) {
-                list.innerHTML =
-                    '<div style="text-align: center; color: #999; padding: 30px;">Откликов еще нет</div>';
-            } else {
-                list.innerHTML = requests.slice(1).map(r => `
+            const salary = parseInt(salaryStr, 10);
+            if (Number.isNaN(salary)) {
+                alert('Зарплата должна быть числом');
+                salaryInput.focus();
+                return;
+            }
+            if (salary < 0) {
+                alert('Зарплата не может быть меньше 0');
+                salaryInput.focus();
+                return;
+            }
+
+            const begin = new Date(dateBeginStr);
+            const end = new Date(dateEndStr);
+
+            if (isNaN(begin.getTime()) || isNaN(end.getTime())) {
+                alert('Указаны некорректные даты');
+                return;
+            }
+
+            if (begin > end) {
+                alert('Дата начала не может быть позже даты окончания');
+                return;
+            }
+
+            const selectedTags = Array.from(
+                document.querySelectorAll('#newTagsCheckbox input[type="checkbox"]:checked')
+            ).map(cb => cb.value);
+
+            if (selectedTags.length === 0) {
+                alert('Выберите хотя бы одну компетенцию');
+                return;
+            }
+
+            const payload = {
+                salary: salary,
+                title: title,
+                dateofbegin: dateBeginStr.replace(/-/g, ''),
+                dateofend: dateEndStr.replace(/-/g, ''),
+                organization: currentOrgId,
+                description: description,
+                typesofwork: selectedTags.join(',')
+            };
+
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/vacancy', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    alert('Вакансия создана!');
+                    e.target.reset();
+                    document
+                        .querySelectorAll('#newTagsCheckbox input[type="checkbox"]')
+                        .forEach(cb => (cb.checked = false));
+                    await loadEmployerVacancies();
+                } else {
+                    alert('Ошибка создания вакансии: ' + res.status);
+                }
+            } catch (e2) {
+                alert(e2.message);
+            }
+        }
+
+
+        async function loadEmployerVacancies() {
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/vacancylist/?organization=' +
+                    encodeURIComponent(currentOrgId)
+                );
+                employerVacancies = await res.json();
+                displayEmployerVacancies();
+            } catch (e) {
+                document.getElementById('employerVacancies').innerHTML =
+                    '<div style="grid-column:1/-1; color:red; text-align:center;">Ошибка подключения</div>';
+            }
+        }
+
+        function displayEmployerVacancies() {
+    const container = document.getElementById('employerVacancies');
+
+    if (!employerVacancies || employerVacancies.length === 0) {
+        container.innerHTML =
+            '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансий пока нет</div>';
+        return;
+    }
+
+    container.innerHTML = employerVacancies.map(v => {
+        const salaryText =
+            v.Salary && Number(v.Salary) > 0
+                ? Number(v.Salary).toLocaleString('ru-RU')
+                : 'Договорная';
+
+        return `
+        <div class="vacancy-item">
+            <div class="vacancy-item-title">${v.Title}</div>
+            <div class="vacancy-item-salary">${salaryText}</div>
+            <div class="vacancy-item-dates">
+                ${formatDate(v.DateOfBegin)} - ${formatDate(v.DateOfEnd)}
+            </div>
+            <div class="vacancy-item-actions">
+                <button onclick="viewRequests('${v.Number}')">Отклики</button>
+                <button class="btn-danger" onclick="closeVacancy('${v.Number}')">Закрыть</button>
+            </div>
+        </div>
+        `;
+    }).join('');
+}
+
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return '';
+            return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        }
+
+        async function viewRequests(vacancyId) {
+            currentRequestVacancyId = vacancyId;
+            document.getElementById('requestsTitle').textContent = 'Отклики на вакансию №' + vacancyId;
+
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/requestlist/?vacancy=' + vacancyId
+                );
+                if (!res.ok) {
+                    alert('Ошибка загрузки откликов. Код: ' + res.status);
+                    return;
+                }
+                const requests = await res.json();
+
+                const list = document.getElementById('requestsList');
+                if (!requests || requests.length <= 1) {
+                    list.innerHTML =
+                        '<div style="text-align: center; color: #999; padding: 30px;">Откликов еще нет</div>';
+                } else {
+                    list.innerHTML = requests.slice(1).map(r => `
                     <div class="request-item">
                         <div class="request-name">
                             ${r.Student}
@@ -664,89 +768,90 @@
                         ` : '<div style="color: #28a745; font-size: 12px;">✓ Кандидат одобрен</div>'}
                     </div>
                 `).join('');
+                }
+                openModal('requestsModal');
+            } catch (e) {
+                alert('Ошибка загрузки откликов');
             }
-            openModal('requestsModal');
-        } catch (e) {
-            alert('Ошибка загрузки откликов');
         }
-    }
 
-    function openApproveModal(requestNumber) {
-        currentRequestNumber = requestNumber;
-        document.getElementById('approveMessage').value = '';
-        openModal('approveModal');
-    }
+        function openApproveModal(requestNumber) {
+            currentRequestNumber = requestNumber;
+            document.getElementById('approveMessage').value = '';
+            openModal('approveModal');
+        }
 
-    async function approveRequest(e) {
-        e.preventDefault();
-        const message = document.getElementById('approveMessage').value;
+        async function approveRequest(e) {
+            e.preventDefault();
+            const message = document.getElementById('approveMessage').value;
 
-        const payload = { number: currentRequestNumber, text: message };
+            const payload = { number: currentRequestNumber, text: message };
 
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/applyrequest', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (res.ok) {
-                alert('Отклик одобрен! Кандидат получит уведомление.');
-                closeModal('approveModal');
-                closeModal('requestsModal');
-                await viewRequests(currentRequestVacancyId);
-            } else {
-                alert('Ошибка одобрения. Код: ' + res.status);
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/applyrequest', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    alert('Отклик одобрен! Кандидат получит уведомление.');
+                    closeModal('approveModal');
+                    closeModal('requestsModal');
+                    await viewRequests(currentRequestVacancyId);
+                } else {
+                    alert('Ошибка одобрения. Код: ' + res.status);
+                }
+            } catch (e) {
+                alert('Ошибка подключения');
             }
-        } catch (e) {
-            alert('Ошибка подключения');
         }
-    }
 
-    async function closeVacancy(vacancyId) {
-        if (!confirm('Закрыть вакансию? Отклики более не будут приниматься.')) return;
+        async function closeVacancy(vacancyId) {
+            if (!confirm('Закрыть вакансию? Отклики более не будут приниматься.')) return;
 
-        try {
-            const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/closevacancy/?number=' + vacancyId,
-                { method: 'POST' }
-            );
-            if (res.ok) {
-                alert('Вакансия закрыта');
-                await loadEmployerVacancies();
-            } else {
-                alert('Ошибка закрытия вакансии. Код: ' + res.status);
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/closevacancy/?number=' + vacancyId,
+                    { method: 'POST' }
+                );
+                if (res.ok) {
+                    alert('Вакансия закрыта');
+                    await loadEmployerVacancies();
+                } else {
+                    alert('Ошибка закрытия вакансии. Код: ' + res.status);
+                }
+            } catch (e) {
+                alert('Ошибка закрытия вакансии');
             }
-        } catch (e) {
-            alert('Ошибка закрытия вакансии');
         }
-    }
 
-    async function submitSuggestion(e) {
-        e.preventDefault();
-        const text = document.getElementById('suggestion').value;
+        async function submitSuggestion(e) {
+            e.preventDefault();
+            const text = document.getElementById('suggestion').value;
 
-        try {
-            const res = await fetch(apiServer + '/JobService/hs/jobservice/faq', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ suggestion: text })
-            });
-            if (res.ok) {
-                alert('Спасибо за ваше предложение!');
-                document.getElementById('suggestion').value = '';
-                closeModal('faqModal');
-            } else {
-                alert('Ошибка отправки. Код: ' + res.status);
+            try {
+                const res = await fetch(apiServer + '/JobService/hs/jobservice/faq', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ suggestion: text })
+                });
+                if (res.ok) {
+                    alert('Спасибо за ваше предложение!');
+                    document.getElementById('suggestion').value = '';
+                    closeModal('faqModal');
+                } else {
+                    alert('Ошибка отправки. Код: ' + res.status);
+                }
+            } catch (e) {
+                alert('Ошибка подключения');
             }
-        } catch (e) {
-            alert('Ошибка подключения');
         }
-    }
 
-    function openModal(id)  { document.getElementById(id).classList.add('active'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-    init();
-</script>
+        init();
+    </script>
 </body>
+
 </html>

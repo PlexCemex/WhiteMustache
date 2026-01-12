@@ -205,7 +205,7 @@ var vacancies = []Vacancy{
 		Description:    "Каталогизация книг, работа с библиотечной системой, помощь посетителям",
 		DateOfBegin:    parseDate("20260201"),
 		DateOfEnd:      parseDate("20261231"),
-		Salary:         28000,
+		Salary:         0,
 		Title:          "Библиотекарь",
 		DateOfDocument: time.Date(2026, 1, 10, 9, 40, 0, 0, time.UTC),
 		TypesOfWork:    []string{"Литература", "Культура"},
