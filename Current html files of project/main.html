@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Платформа подработки ДВФУ — Главная</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: #003d82;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .user-info {
+            font-size: 13px;
+            color: #e0e7f5;
+            text-align: right;
+            min-width: 180px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .page-title {
+            color: #003d82;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #0066cc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            color: #003d82;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #003d82;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 4px rgba(0, 102, 204, 0.3);
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #003d82;
+            transform: translateY(-2px);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .actions button {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        footer {
+            background: #f0f0f0;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                justify-content: flex-start;
+            }
+
+            .user-info {
+                text-align: left;
+                align-self: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Платформа подработки ДВФУ</div>
+            <nav>
+                <a href="main.html">Главная</a>
+                <a href="vacancy.html">Вакансии</a>
+                <a href="employer.html">Работодателям</a>
+            </nav>
+            <div id="userInfo" class="user-info">Не авторизован</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Добро пожаловать</h1>
+        <p class="page-subtitle">
+            Здесь размещаются временные вакансии и подработки для студентов и партнеров ДВФУ.
+        </p>
+
+        <div class="section">
+            <div class="section-title">Вход через учетную запись «Мой Универ»</div>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label for="loginInput">Логин (как в «Мой Универ»)</label>
+                    <input id="loginInput" type="text" required placeholder="например, ivanov.ii">
+                </div>
+                <button type="submit">Войти</button>
+                <div class="hint">
+                    После входа платформа автоматически определит, являетесь ли вы студентом или работодателем.
+                </div>
+            </form>
+        </div>
+
+        <div class="section" id="roleSection" style="display: none;">
+            <div class="section-title">Ваши разделы</div>
+            <p id="roleText" class="page-subtitle" style="margin-bottom: 15px;"></p>
+            <div class="actions">
+                <button id="btnStudent" type="button" style="display: none;" onclick="goToStudent()">
+                    Перейти к вакансиям (студент)
+                </button>
+                <button id="btnEmployer" type="button" style="display: none;" onclick="goToEmployer()">
+                    Перейти в кабинет работодателя
+                </button>
+                <button type="button" onclick="logout()" style="background:#999;">
+                    Выйти
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Платформа подработки ДВФУ.</p>
+    </footer>
+
+    <script>
+        // Явная конфигурация сервера
+        const apiServer = 'http://localhost';
+
+        function getCurrentUser() {
+            const raw = localStorage.getItem('jobPlatformUser');
+            if (!raw) return null;
+            try { return JSON.parse(raw); } catch (_) { return null; }
+        }
+
+        function setCurrentUser(user) {
+            if (user) {
+                localStorage.setItem('jobPlatformUser', JSON.stringify(user));
+                // Дополнительно, для полной совместимости:
+                localStorage.setItem('student', user.student || '');
+                localStorage.setItem('organization', user.organization || '');
+            } else {
+                localStorage.removeItem('jobPlatformUser');
+                localStorage.removeItem('student');
+                localStorage.removeItem('organization');
+            }
+            updateUserUI();
+        }
+
+        function updateUserUI() {
+            const user = getCurrentUser();
+            const info = document.getElementById('userInfo');
+            const roleSection = document.getElementById('roleSection');
+            const roleText = document.getElementById('roleText');
+            const btnStudent = document.getElementById('btnStudent');
+            const btnEmployer = document.getElementById('btnEmployer');
+
+            if (!info || !roleSection || !roleText) return;
+
+            if (!user) {
+                info.textContent = 'Не авторизован';
+                roleSection.style.display = 'none';
+                return;
+            }
+
+            const isEmployer = !!user.organization;
+            const isStudent = !!user.student;
+
+            let roleLabel;
+            if (isEmployer && isStudent) roleLabel = 'Студент и работодатель';
+            else if (isEmployer) roleLabel = 'Работодатель';
+            else if (isStudent) roleLabel = 'Студент';
+            else roleLabel = 'Пользователь платформы';
+
+            info.textContent = `${user.login} — ${roleLabel}`;
+            roleSection.style.display = 'block';
+            roleText.textContent = `Вы вошли как: ${user.login} (${roleLabel}).`;
+
+            btnStudent.style.display = isStudent ? 'inline-block' : 'none';
+            btnEmployer.style.display = isEmployer ? 'inline-block' : 'none';
+        }
+
+        async function login(e) {
+            e.preventDefault();
+            const loginInput = document.getElementById('loginInput');
+            const login = loginInput.value.trim();
+            if (!login) return;
+
+            try {
+                const res = await fetch(
+                    apiServer + '/JobService/hs/jobservice/checkaccount/?user=' + encodeURIComponent(login)
+                );
+                if (!res.ok) {
+                    alert('Ошибка авторизации. Код: ' + res.status);
+                    return;
+                }
+                const data = await res.json();
+
+                if (!data.Organization && !data.Student) {
+                    alert('Пользователь не найден или не зарегистрирован в системе подработки.');
+                    return;
+                }
+
+                const user = {
+                    login: login,
+                    student: data.Student || '',
+                    organization: data.Organization || ''
+                };
+                setCurrentUser(user);
+                alert('Авторизация успешна.');
+            } catch (err) {
+                alert('Ошибка подключения к серверу: ' + err.message);
+            }
+        }
+
+        function goToStudent() { window.location.href = 'vacancy.html'; }
+        function goToEmployer() { window.location.href = 'employer.html'; }
+
+        function logout() {
+            setCurrentUser(null);
+            alert('Вы вышли из системы.');
+        }
+
+        updateUserUI();
+    </script>
+</body>
+
+</html>
