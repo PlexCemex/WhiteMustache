@@ -208,7 +208,7 @@
             background: white;
             padding: 30px;
             border-radius: 8px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
@@ -313,20 +313,120 @@
             margin-bottom: 15px;
         }
 
+        /* Красивые зеленые карточки одобренных откликов */
         .notification-item {
-            padding: 12px;
-            background: #f0f8f0;
-            border-left: 3px solid #28a745;
+            padding: 14px 16px;
+            background: #e6f8ea;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
             margin-bottom: 10px;
-            border-radius: 4px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
         }
 
-        .notification-item:hover {
-            background: #e8f5e8;
-            transform: translateX(4px);
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .notification-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d7c36;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .notification-date {
+            font-size: 12px;
+            color: #4f8461;
+        }
+
+        .notification-message-preview {
+            font-size: 13px;
+            color: #30523f;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .notification-btn {
+            display: inline-block;
+            padding: 7px 14px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .notification-btn:hover {
+            background: #1f7a34;
+            transform: translateY(-1px);
+        }
+
+        .notification-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Окно для просмотра ответа работодателя */
+        .notify-body {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .notify-vacancy {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notify-vacancy-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #003d82;
+            margin-bottom: 5px;
+        }
+
+        .notify-vacancy-org {
+            font-size: 13px;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+
+        .notify-vacancy-meta {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 4px;
+        }
+
+        .notify-vacancy-salary {
+            font-size: 14px;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .notify-message h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d7c36;
+            margin-bottom: 8px;
+        }
+
+        .notify-message-text {
+            font-size: 14px;
+            color: #2f513f;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            margin-bottom: 8px;
+        }
+
+        .notify-message-date {
+            font-size: 12px;
+            color: #4f8461;
         }
 
         .faq-btn {
@@ -407,7 +507,7 @@
     </div>
 </div>
 
-<!-- Modal отклика -->
+<!-- Modal для отклика -->
 <div class="modal" id="respondModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -442,7 +542,33 @@
     </div>
 </div>
 
-<!-- Modal FAQ -->
+<!-- Modal для просмотра ответа работодателя -->
+<div class="modal" id="notifyModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>Одобренный отклик</span>
+            <button class="modal-close" onclick="closeModal('notifyModal')">✕</button>
+        </div>
+        <div class="notify-body">
+            <div class="notify-vacancy">
+                <div id="notifyVacancyTitle" class="notify-vacancy-title">Вакансия</div>
+                <div id="notifyVacancyOrg" class="notify-vacancy-org"></div>
+                <div id="notifyVacancyDates" class="notify-vacancy-meta"></div>
+                <div id="notifyVacancySalary" class="notify-vacancy-salary"></div>
+            </div>
+            <div class="notify-message">
+                <h4>Сообщение от работодателя</h4>
+                <div id="notifyMessageText" class="notify-message-text"></div>
+                <div id="notifyMessageDate" class="notify-message-date"></div>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button type="button" class="btn-cancel" onclick="closeModal('notifyModal')">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal для FAQ -->
 <div class="modal" id="faqModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -488,6 +614,7 @@
     let allTags = [];
     let allVacancies = [];
     let currentUser = null;
+    let notificationsData = [];
 
     function getCurrentUser() {
         const raw = localStorage.getItem('jobPlatformUser');
@@ -501,7 +628,6 @@
 
         if (!currentUser) {
             if (info) info.textContent = 'Не авторизован';
-            // Никаких редиректов — можно смотреть список, но нельзя откликаться
             return;
         }
 
@@ -592,6 +718,12 @@
         return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
     }
 
+    function formatNotifyDate(dateStr) {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return '';
+        return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
     function applyFilters() {
         let filtered = allVacancies;
 
@@ -643,7 +775,7 @@
         const payload = {
             startperiod: startDate,
             endperiod: endDate,
-            student: currentUser.student,   // СНИЛС из checkaccount
+            student: currentUser.student,
             description: description,
             vacancy: currentVacancyId
         };
@@ -666,6 +798,12 @@
         }
     }
 
+    function truncateText(text, maxLen) {
+        if (!text) return '';
+        if (text.length <= maxLen) return text;
+        return text.slice(0, maxLen) + '…';
+    }
+
     async function loadNotifications() {
         if (!currentUser || !currentUser.student) return;
 
@@ -678,11 +816,20 @@
 
             const notifications = await res.json();
             if (notifications && notifications.length > 0) {
+                notificationsData = notifications;
                 document.getElementById('notificationsContainer').style.display = 'block';
-                document.getElementById('notificationsList').innerHTML = notifications.map(n => `
-                    <div class="notification-item" onclick="viewVacancyFromNotify('${n.NumberOfRequest}')">
-                        <strong>Новое уведомление</strong><br>
-                        ${n.Text.substring(0, 100)}...
+                document.getElementById('notificationsList').innerHTML = notifications.map((n, index) => `
+                    <div class="notification-item">
+                        <div class="notification-header">
+                            <span class="notification-title">Отклик одобрен</span>
+                            <span class="notification-date">${formatNotifyDate(n.Date)}</span>
+                        </div>
+                        <div class="notification-message-preview">
+                            ${truncateText(n.Text, 140)}
+                        </div>
+                        <button type="button" class="notification-btn" onclick="openNotificationModal(${index})">
+                            Подробнее
+                        </button>
                     </div>
                 `).join('');
             }
@@ -691,28 +838,38 @@
         }
     }
 
-    async function viewVacancyFromNotify(requestNumber) {
+    async function openNotificationModal(index) {
+        const n = notificationsData[index];
+        if (!n) return;
+
+        let v = {};
         try {
             const res = await fetch(
-                apiServer + '/JobService/hs/jobservice/vacancyfromnotify/?numberofrequest=' + requestNumber
+                apiServer + '/JobService/hs/jobservice/vacancyfromnotify/?numberofrequest=' +
+                encodeURIComponent(n.NumberOfRequest)
             );
-            if (!res.ok) {
-                alert('Ошибка загрузки вакансии');
-                return;
-            }
-            const vacancy = await res.json();
-            if (vacancy && vacancy.length > 0) {
-                const v = vacancy[0];
-                alert(
-                    v.Organization + '\n' +
-                    v.Title + '\n' +
-                    '₽' + v.Salary + '\n\n' +
-                    v.Description
-                );
+            if (res.ok) {
+                const arr = await res.json();
+                if (arr && arr.length > 0) v = arr[0];
             }
         } catch (e) {
-            alert('Ошибка загрузки вакансии');
+            console.error('Ошибка загрузки вакансии из уведомления', e);
         }
+
+        document.getElementById('notifyVacancyTitle').textContent = v.Title || 'Вакансия';
+        document.getElementById('notifyVacancyOrg').textContent   = v.Organization || '';
+        document.getElementById('notifyVacancyDates').textContent =
+            (v.DateOfBegin && v.DateOfEnd)
+                ? `${formatDate(v.DateOfBegin)} — ${formatDate(v.DateOfEnd)}`
+                : '';
+        document.getElementById('notifyVacancySalary').textContent =
+            v.Salary ? '₽ ' + Number(v.Salary).toLocaleString('ru-RU') : '';
+
+        document.getElementById('notifyMessageText').textContent = n.Text || '';
+        document.getElementById('notifyMessageDate').textContent =
+            n.Date ? 'Дата сообщения: ' + formatNotifyDate(n.Date) : '';
+
+        openModal('notifyModal');
     }
 
     async function submitSuggestion(e) {
