@@ -648,7 +648,8 @@
     <button class="faq-btn" onclick="openModal('faqModal')">?</button>
 
     <footer>
-        <p>&copy; 2026 Платформа подработки ДВФУ. Информация, размещённая на данном сайте, является собственностью ДВФУ. Любое копирование материалов сайта без разрешения владельца запрещено.</p>
+        <p>&copy; 2026 Платформа подработки ДВФУ. Информация, размещённая на данном сайте, является собственностью ДВФУ.
+            Любое копирование материалов сайта без разрешения владельца запрещено.</p>
     </footer>
 
     <script>
@@ -779,17 +780,19 @@
         function applyFilters() {
             let filtered = allVacancies;
 
+            // Валидация суммы
             const salaryInput = document.getElementById('salaryMin');
             const salaryRaw = salaryInput.value.trim();
 
             if (salaryRaw !== '') {
-                const salary = parseInt(salaryRaw, 10);
-
-                if (Number.isNaN(salary)) {
-                    alert('Минимальная сумма оплаты должна быть числом');
+                // только цифры
+                if (!/^\d+$/.test(salaryRaw)) {
+                    alert('Минимальная сумма оплаты должна содержать только цифры');
                     salaryInput.focus();
                     return;
                 }
+
+                const salary = Number(salaryRaw);
 
                 if (salary < 0) {
                     alert('Сумма оплаты не может быть меньше 0');
@@ -800,6 +803,35 @@
                 filtered = filtered.filter(v => Number(v.Salary) >= salary);
             }
 
+            // Валидация дат
+            const dateBeginInput = document.getElementById('dateBegin');
+            const dateEndInput = document.getElementById('dateEnd');
+            const dateBeginStr = dateBeginInput.value;
+            const dateEndStr = dateEndInput.value;
+
+            if (dateBeginStr !== '' && dateEndStr !== '') {
+                const begin = new Date(dateBeginStr);
+                const end = new Date(dateEndStr);
+
+                if (isNaN(begin.getTime()) || isNaN(end.getTime())) {
+                    alert('Указаны некорректные даты');
+                    return;
+                }
+
+                if (begin > end) {
+                    alert('Дата начала не может быть позже даты окончания');
+                    return;
+                }
+
+                filtered = filtered.filter(v =>
+                    v.DateOfBegin >= dateBeginStr && v.DateOfEnd <= dateEndStr
+                );
+            } else if (dateBeginStr !== '' || dateEndStr !== '') {
+                alert('Укажите обе даты для фильтрации по датам');
+                return;
+            }
+
+            // Теги (без изменений)
             const tag = document.getElementById('tagsFilter').value;
             if (tag) {
                 filtered = filtered.filter(v => v.TypesOfWork && v.TypesOfWork.includes(tag));
@@ -807,6 +839,7 @@
 
             displayVacancies(filtered);
         }
+
 
 
         function openRespondModal(vacancyId, vacancyTitle) {
