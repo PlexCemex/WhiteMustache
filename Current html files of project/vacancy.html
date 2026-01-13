@@ -905,8 +905,8 @@
             }
 
             const payload = {
-                startperiod: startDateStr,
-                endperiod: endDateStr,
+                startperiod: startDateStr.replace(/-/g, ''),
+                endperiod: endDateStr.replace(/-/g, ''),
                 student: currentUser.student,
                 description: description,
                 vacancy: currentVacancyId
