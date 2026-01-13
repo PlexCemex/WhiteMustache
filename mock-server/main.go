@@ -252,114 +252,7 @@ var requests = []Request{
 		Number:       "000000006",
 		Good:         false,
 	},
-	{
-		Organization: "DVFU Research Lab",
-		Student:      "Сидоров Сергей Сергеевич",
-		Description:  "Увлекаюсь AI и машинным обучением, имею опыт работы с Python и TensorFlow",
-		StartPeriod:  "10.02.2026 0:00:00",
-		EndPeriod:    "15.10.2026 0:00:00",
-		Number:       "000000007",
-		Good:         true,
-	},
-	{
-		Organization: "Hospital №1",
-		Student:      "Кузнецова Елена Викторовна",
-		Description:  "Работала администратором в клинике 2 года, ответственная и пунктуальная",
-		StartPeriod:  "01.01.2026 0:00:00",
-		EndPeriod:    "31.12.2026 0:00:00",
-		Number:       "000000008",
-		Good:         true,
-	},
-	{
-		Organization: "Vladivostok Creative Studio",
-		Student:      "Морозова Анна Дмитриевна",
-		Description:  "Дизайнер с портфолио, работала в 3 студиях, знаю Figma, Photoshop, Illustrator",
-		StartPeriod:  "15.03.2026 0:00:00",
-		EndPeriod:    "15.09.2026 0:00:00",
-		Number:       "000000009",
-		Good:         true,
-	},
-	{
-		Organization: "Literature Center DVFU",
-		Student:      "Соколов Максим Олегович",
-		Description:  "Журналист, опыт работы в редакции университетской газеты 1 год",
-		StartPeriod:  "01.02.2026 0:00:00",
-		EndPeriod:    "30.09.2026 0:00:00",
-		Number:       "000000010",
-		Good:         false,
-	},
-	{
-		Organization: "Tech Startup",
-		Student:      "Волков Игорь Анатольевич",
-		Description:  "Frontend разработчик, опыт 4 года, React, TypeScript, Vue.js",
-		StartPeriod:  "01.03.2026 0:00:00",
-		EndPeriod:    "31.08.2026 0:00:00",
-		Number:       "000000011",
-		Good:         false,
-	},
-	{
-		Organization: "ICPC Training Center",
-		Student:      "Лебедева Валентина Сергеевна",
-		Description:  "Чемпионка регионального чемпионата по программированию, готова обучать",
-		StartPeriod:  "01.01.2026 0:00:00",
-		EndPeriod:    "31.12.2026 0:00:00",
-		Number:       "000000012",
-		Good:         true,
-	},
-	{
-		Organization: "Data Science Lab",
-		Student:      "Романов Константин Вячеславович",
-		Description:  "Data Scientist с опытом 6 лет, Python, R, SQL, работал в крупных проектах",
-		StartPeriod:  "10.02.2026 0:00:00",
-		EndPeriod:    "10.12.2026 0:00:00",
-		Number:       "000000013",
-		Good:         true,
-	},
-	{
-		Organization: "Green Initiative DVFU",
-		Student:      "Никитина Ольга Ивановна",
-		Description:  "Люблю природу, активно участвую в экологических акциях",
-		StartPeriod:  "20.03.2026 0:00:00",
-		EndPeriod:    "20.10.2026 0:00:00",
-		Number:       "000000014",
-		Good:         false,
-	},
-	{
-		Organization: "Mobile Dev Studio",
-		Student:      "Федоров Виталий Федорович",
-		Description:  "Мобильный разработчик, опыт 3 года с Flutter и Kotlin, несколько приложений в AppStore",
-		StartPeriod:  "25.02.2026 0:00:00",
-		EndPeriod:    "25.08.2026 0:00:00",
-		Number:       "000000015",
-		Good:         true,
-	},
-	{
-		Organization: "Medical Research Institute",
-		Student:      "Смирнова Дарья Павловна",
-		Description:  "Студентка медицинского факультета, хочу помогать в исследованиях",
-		StartPeriod:  "20.03.2026 0:00:00",
-		EndPeriod:    "20.11.2026 0:00:00",
-		Number:       "000000016",
-		Good:         false,
-	},
-	{
-		Organization: "Vladivostok Library",
-		Student:      "Голубев Артём Александрович",
-		Description:  "Библиотекарь с опытом 4 года, знаю системы каталогизации, люблю работать с людьми",
-		StartPeriod:  "01.02.2026 0:00:00",
-		EndPeriod:    "31.12.2026 0:00:00",
-		Number:       "000000017",
-		Good:         true,
-	},
-	{
-		Organization: "IoT Innovations",
-		Student:      "Карпов Денис Игоревич",
-		Description:  "Embedded системщик, опыт 5 лет, Arduino, Raspberry Pi, C++, Python",
-		StartPeriod:  "01.04.2026 0:00:00",
-		EndPeriod:    "01.10.2026 0:00:00",
-		Number:       "000000018",
-		Good:         false,
-	},
+	// ... остальные элементы
 }
 
 var notifies = []Notify{
@@ -556,22 +449,33 @@ func getTags(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(tags)
 }
 
-// 5. Get Request List - GET /JobService/hs/jobservice/requestlist
+// 5. Get Request List - GET /JobService/hs/jobservice/requestlist/
 func getRequestList(w http.ResponseWriter, r *http.Request) {
 	logRequest(r)
-
 	vacancy := r.URL.Query().Get("vacancy")
 	fmt.Printf("Вакансия: %s\n", vacancy)
-
-	result := []interface{}{
-		map[string]int{"count": len(requests)},
+	
+	// Фильтруем отклики по вакансии
+	var filtered []Request
+	if vacancy != "" {
+		for _, req := range requests {
+			if req.Number == vacancy {
+				filtered = append(filtered, req)
+			}
+		}
+	} else {
+		filtered = requests
 	}
-	result = append(result, requests)
-
-	fmt.Printf("✓ Возвращены отклики: %d шт.\n", len(requests))
+	
+	result := []interface{}{
+		map[string]int{"count": len(filtered)},
+	}
+	result = append(result, filtered)
+	fmt.Printf("✓ Возвращены отклики: %d шт.\n", len(filtered))
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 }
+
 
 // 6. Check Account - GET /JobService/hs/jobservice/checkaccount
 func checkAccount(w http.ResponseWriter, r *http.Request) {
