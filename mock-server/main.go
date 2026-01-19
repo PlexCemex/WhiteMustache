@@ -30,6 +30,7 @@ type Request struct {
 	StartPeriod  string `json:"StartPeriod"`
 	EndPeriod    string `json:"EndPeriod"`
 	Number       string `json:"Number"`
+	Accept       bool   `json:"Accept"`
 	Good         bool   `json:"Good"`
 }
 
@@ -232,6 +233,7 @@ var requests = []Request{
 		StartPeriod:  "26.01.2026 0:00:00",
 		EndPeriod:    "06.02.2026 0:00:00",
 		Number:       "000000004",
+		Accept:       true,
 		Good:         false,
 	},
 	{
@@ -241,6 +243,7 @@ var requests = []Request{
 		StartPeriod:  "01.06.2026 0:00:00",
 		EndPeriod:    "01.07.2026 0:00:00",
 		Number:       "000000001",
+		Accept:       false,
 		Good:         true,
 	},
 	{
@@ -250,9 +253,9 @@ var requests = []Request{
 		StartPeriod:  "15.02.2026 0:00:00",
 		EndPeriod:    "30.06.2026 0:00:00",
 		Number:       "000000006",
+		Accept:       false,
 		Good:         false,
 	},
-	// ... остальные элементы
 }
 
 var notifies = []Notify{
@@ -454,7 +457,7 @@ func getRequestList(w http.ResponseWriter, r *http.Request) {
 	logRequest(r)
 	vacancy := r.URL.Query().Get("vacancy")
 	fmt.Printf("Вакансия: %s\n", vacancy)
-	
+
 	// Фильтруем отклики по вакансии
 	var filtered []Request
 	if vacancy != "" {
@@ -466,7 +469,7 @@ func getRequestList(w http.ResponseWriter, r *http.Request) {
 	} else {
 		filtered = requests
 	}
-	
+
 	result := []interface{}{
 		map[string]int{"count": len(filtered)},
 	}
@@ -475,7 +478,6 @@ func getRequestList(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 }
-
 
 // 6. Check Account - GET /JobService/hs/jobservice/checkaccount
 func checkAccount(w http.ResponseWriter, r *http.Request) {

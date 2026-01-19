@@ -350,6 +350,28 @@
             transform: scale(1.1);
         }
 
+        .good-badge {
+            display: inline-block;
+            background: #d4edda;
+            color: #155724;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .accept-badge {
+            display: inline-block;
+            background: #d4edda;
+            color: #155724;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
         footer {
             background: #f0f0f0;
             padding: 30px 20px;
@@ -695,21 +717,21 @@
         }
 
         function displayEmployerVacancies() {
-    const container = document.getElementById('employerVacancies');
+            const container = document.getElementById('employerVacancies');
 
-    if (!employerVacancies || employerVacancies.length === 0) {
-        container.innerHTML =
-            '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансий пока нет</div>';
-        return;
-    }
+            if (!employerVacancies || employerVacancies.length === 0) {
+                container.innerHTML =
+                    '<div style="grid-column:1/-1; text-align:center; color:#999; padding:40px;">Вакансий пока нет</div>';
+                return;
+            }
 
-    container.innerHTML = employerVacancies.map(v => {
-        const salaryText =
-            v.Salary && Number(v.Salary) > 0
-                ? Number(v.Salary).toLocaleString('ru-RU')
-                : 'Договорная';
+            container.innerHTML = employerVacancies.map(v => {
+                const salaryText =
+                    v.Salary && Number(v.Salary) > 0
+                        ? Number(v.Salary).toLocaleString('ru-RU')
+                        : 'Договорная';
 
-        return `
+                return `
         <div class="vacancy-item">
             <div class="vacancy-item-title">${v.Title}</div>
             <div class="vacancy-item-salary">${salaryText}</div>
@@ -722,58 +744,48 @@
             </div>
         </div>
         `;
-    }).join('');
-}
-
-
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            if (isNaN(date.getTime())) return '';
-            return date.toLocaleDateString('ru-RU', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            }).join('');
         }
+
 
         async function viewRequests(vacancyId) {
             currentRequestVacancyId = vacancyId;
-            document.getElementById('requestsTitle').textContent = 'Отклики на вакансию №' + vacancyId;
+            document.getElementById('requestsTitle').textContent = `Вакансия #${vacancyId}`;
 
             try {
-                const res = await fetch(
-                    apiServer + '/JobService/hs/jobservice/requestlist/?vacancy=' + vacancyId
-                );
+                const res = await fetch(`${apiServer}/JobService/hsjobservice/requestlist?vacancy=${vacancyId}`);
                 if (!res.ok) {
-                    alert('Ошибка загрузки откликов. Код: ' + res.status);
+                    alert(`Ошибка при загрузке откликов: ${res.status}`);
                     return;
                 }
-                const requests = await res.json();
 
+                const requests = await res.json();
                 const list = document.getElementById('requestsList');
-                if (!requests || requests.length <= 1) {
-                    list.innerHTML =
-                        '<div style="text-align: center; color: #999; padding: 30px;">Откликов еще нет</div>';
+
+                if (!requests || requests.length === 0) {
+                    list.innerHTML = `<div style="text-align: center; color: #999; padding: 30px;">Откликов на эту вакансию нет</div>`;
                 } else {
                     list.innerHTML = requests.slice(1).map(r => `
-                    <div class="request-item">
-                        <div class="request-name">
-                            ${r.Student}
-                            ${r.Good ? '<span class="approved-badge">✓ Одобрено</span>' : ''}
-                        </div>
-                        <div class="request-dates">
-                            ${r.StartPeriod} - ${r.EndPeriod}
-                        </div>
-                        <div class="request-about">${r.Description}</div>
-                        ${!r.Good ? `
-                            <div class="request-actions">
-                                <button onclick="openApproveModal('${r.Number}')">Одобрить</button>
-                            </div>
-                        ` : '<div style="color: #28a745; font-size: 12px;">✓ Кандидат одобрен</div>'}
+                <div class="request-item">
+                    <div class="request-name">
+                        ${r.Student}
+                        ${r.Good ? `<span class="good-badge">Хороший кандидат</span>` : ''}
                     </div>
-                `).join('');
+                    <div class="request-dates">${r.StartPeriod} - ${r.EndPeriod}</div>
+                    <div class="request-about">${r.Description}</div>
+                    <div class="request-actions">
+                        ${r.Accept ? `<span class="accept-badge">Одобрено</span>` : `<button onclick="openApproveModal(${r.Number})">Одобрить</button>`}
+                    </div>
+                </div>
+            `).join('');
                 }
+
                 openModal('requestsModal');
             } catch (e) {
-                alert('Ошибка загрузки откликов');
+                alert(`Ошибка: ${e}`);
             }
         }
+
 
         function openApproveModal(requestNumber) {
             currentRequestNumber = requestNumber;
@@ -784,25 +796,27 @@
         async function approveRequest(e) {
             e.preventDefault();
             const message = document.getElementById('approveMessage').value;
-
-            const payload = { number: currentRequestNumber, text: message };
-
+            const payload = {
+                number: currentRequestNumber,
+                text: message,
+                Accept: true
+            };
             try {
-                const res = await fetch(apiServer + '/JobService/hs/jobservice/applyrequest', {
+                const res = await fetch(`${apiServer}/JobService/hs/jobservice/applyrequest`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
                 if (res.ok) {
-                    alert('Отклик одобрен! Кандидат получит уведомление.');
+                    alert('Кандидат одобрен!');
                     closeModal('approveModal');
                     closeModal('requestsModal');
                     await viewRequests(currentRequestVacancyId);
                 } else {
-                    alert('Ошибка одобрения. Код: ' + res.status);
+                    alert(`Ошибка. Статус: ${res.status}`);
                 }
             } catch (e) {
-                alert('Ошибка подключения');
+                alert(`Ошибка: ${e}`);
             }
         }
 
