@@ -901,8 +901,6 @@
 
             async function viewRequests(vacancyId) {
                 currentRequestVacancyId = vacancyId;
-                document.getElementById("requestsTitle").textContent =
-                    `Вакансия #${vacancyId}`;
 
                 try {
                     const res = await fetch(
@@ -913,7 +911,14 @@
                         return;
                     }
 
-                    const requests = await res.json();
+                    const data = await res.json();
+                    const countObj = data[0];
+                    const requests = data.slice(1);
+                    const count = countObj?.count || 0;
+
+                    document.getElementById("requestsTitle").textContent =
+                        `Вакансия #${vacancyId} (${count})`;
+
                     const list = document.getElementById("requestsList");
 
                     if (!requests || requests.length === 0) {
@@ -922,18 +927,18 @@
                         list.innerHTML = requests
                             .map(
                                 (r) => `
-                        <div class="request-item">
-                            <div class="request-name">
-                                ${r.Student}
-                                ${r.Good ? `<span class="good-badge">Хороший кандидат</span>` : ""}
-                            </div>
-                            <div class="request-dates">${r.StartPeriod} - ${r.EndPeriod}</div>
-                            <div class="request-about">${r.Description}</div>
-                            <div class="request-actions">
-                                ${r.Accept ? `<span class="accept-badge">Одобрено</span>` : `<button onclick="openApproveModal(${r.Number})">Одобрить</button>`}
-                            </div>
-                        </div>
-                    `,
+                                <div class="request-item">
+                                    <div class="request-name">
+                                        ${r.Student}
+                                        ${r.Good ? `<span class="good-badge">Хороший кандидат</span>` : ""}
+                                    </div>
+                                    <div class="request-dates">${r.StartPeriod} - ${r.EndPeriod}</div>
+                                    <div class="request-about">${r.Description}</div>
+                                    <div class="request-actions">
+                                        ${r.Accept ? `<span class="accept-badge">Одобрено</span>` : `<button onclick="openApproveModal(${r.Number})">Одобрить</button>`}
+                                    </div>
+                                </div>
+                            `,
                             )
                             .join("");
                     }
