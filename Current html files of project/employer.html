@@ -362,13 +362,17 @@
 
             .accept-badge {
                 display: inline-block;
+                flex: 1; /* чтобы в строке действий занимало ширину как кнопка */
+                text-align: center;
+
+                padding: 8px; /* как .request-actions button */
+                font-size: 12px; /* как .request-actions button */
+                border-radius: 5px; /* как у button */
+
                 background: #d4edda;
                 color: #155724;
-                padding: 6px 16px;
-                border-radius: 6px;
-                font-size: 13px;
-                margin-top: 8px;
-                font-weight: 500;
+
+                margin-top: 0; /* убрать лишний отступ, который отличает от кнопки */
             }
 
             footer {
@@ -869,7 +873,7 @@
                     .map((v) => {
                         const salaryText =
                             v.Salary && Number(v.Salary) > 0
-                                ? Number(v.Salary).toLocaleString("ru-RU")
+                                ? `${Number(v.Salary).toLocaleString("ru-RU")} ₽`
                                 : "Договорная";
 
                         return `
@@ -899,6 +903,13 @@
                 });
             }
 
+            function getVacancyTitleByNumber(number) {
+                const v = (employerVacancies || []).find(
+                    (x) => x.Number === number,
+                );
+                return v?.Title || number; // fallback: номер, если не нашли
+            }
+
             async function viewRequests(vacancyId) {
                 currentRequestVacancyId = vacancyId;
 
@@ -916,8 +927,9 @@
                     const requests = data.slice(1);
                     const count = countObj?.count || 0;
 
+                    const title = getVacancyTitleByNumber(vacancyId);
                     document.getElementById("requestsTitle").textContent =
-                        `Вакансия #${vacancyId} (${count})`;
+                        `${title} (Количество откликов: ${count})`;
 
                     const list = document.getElementById("requestsList");
 

@@ -242,7 +242,7 @@ var requests = []Request{
 		Description:  "Опыт преподавания 3 года, люблю работать со студентами",
 		StartPeriod:  "01.06.2026 0:00:00",
 		EndPeriod:    "01.07.2026 0:00:00",
-		Number:       "000000001",
+		Number:       "000000004",
 		Accept:       false,
 		Good:         true,
 	},
@@ -252,9 +252,19 @@ var requests = []Request{
 		Description:  "Разработчик с опытом 5 лет, знаю Go, PostgreSQL, Docker",
 		StartPeriod:  "15.02.2026 0:00:00",
 		EndPeriod:    "30.06.2026 0:00:00",
-		Number:       "000000006",
+		Number:       "000000004",
 		Accept:       false,
 		Good:         false,
+	},
+	{
+		Organization: "Tech Startup",
+		Student:      "Петров Петр Петрович",
+		Description:  "Разработчик с опытом 10 лет, знаю Go, PostgreSQL, Docker",
+		StartPeriod:  "15.02.2026 0:00:00",
+		EndPeriod:    "30.06.2026 0:00:00",
+		Number:       "000000004",
+		Accept:       true,
+		Good:         true,
 	},
 }
 
@@ -455,10 +465,10 @@ func getTags(w http.ResponseWriter, r *http.Request) {
 // 5. Get Request List - GET /JobService/hs/jobservice/requestlist/
 func getRequestList(w http.ResponseWriter, r *http.Request) {
 	logRequest(r)
+
 	vacancy := r.URL.Query().Get("vacancy")
 	fmt.Printf("Вакансия: %s\n", vacancy)
 
-	// Фильтруем отклики по вакансии
 	var filtered []Request
 	if vacancy != "" {
 		for _, req := range requests {
@@ -470,14 +480,16 @@ func getRequestList(w http.ResponseWriter, r *http.Request) {
 		filtered = requests
 	}
 
-	result := []interface{}{
-		map[string]int{"count": len(filtered)},
+	result := make([]interface{}, 0, len(filtered)+1)
+	result = append(result, map[string]int{"count": len(filtered)})
+	for _, req := range filtered {
+		result = append(result, req)
 	}
-	result = append(result, filtered)
-	fmt.Printf("✓ Возвращены отклики: %d шт.\n", len(filtered))
+
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(result)
+	_ = json.NewEncoder(w).Encode(result)
 }
+
 
 // 6. Check Account - GET /JobService/hs/jobservice/checkaccount
 func checkAccount(w http.ResponseWriter, r *http.Request) {
@@ -574,7 +586,6 @@ func closeVacancy(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Println("🚀 WhiteMustache Mock Server запущен")
 	fmt.Println("📍 http://localhost:80")
-	fmt.Println("─────────────────────────────────────\n")
 
 	mux := http.NewServeMux()
 
@@ -583,6 +594,7 @@ func main() {
 	mux.HandleFunc("/JobService/hs/jobservice/request", createRequest)
 	mux.HandleFunc("/JobService/hs/jobservice/vacancylist/", getVacancyList)
 	mux.HandleFunc("/JobService/hs/jobservice/tags", getTags)
+	mux.HandleFunc("/JobService/hs/jobservice/requestlist", getRequestList)
 	mux.HandleFunc("/JobService/hs/jobservice/requestlist/", getRequestList)
 	mux.HandleFunc("/JobService/hs/jobservice/checkaccount/", checkAccount)
 	mux.HandleFunc("/JobService/hs/jobservice/faq", sendFAQ)
